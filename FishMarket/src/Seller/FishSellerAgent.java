@@ -18,8 +18,17 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public class FishSellerAgent extends Agent{
     private FishSellerGui _myGui;
+    private String _myName;
     
-    private Fish _fish;
+    public String getMyName() {
+		return _myName;
+	}
+
+	public void setMyName(String name) {
+		this._myName = name;
+	}
+
+	private Fish _fish;
 
 	public Fish getFish() {
 		return _fish;
@@ -43,6 +52,7 @@ public class FishSellerAgent extends Agent{
 	
 	protected void setup(){
         _myGui = new FishSellerGui(this);
+        _myName = this.getAID().getName();
         String serviceName = "Fishmonger";
       	
       	// Read the name of the service to register as an argument
