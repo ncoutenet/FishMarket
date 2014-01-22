@@ -25,6 +25,7 @@ public class FishSellerGui extends JFrame{
 	public FishSellerGui(FishSellerAgent agent){
 		_myAgent = agent;
 		_priceField = new JTextField(15);
+		_nameFish = new JTextField(15);
 		
 		JPanel p = new JPanel();
 		p.setLayout(new GridLayout(2, 2));
