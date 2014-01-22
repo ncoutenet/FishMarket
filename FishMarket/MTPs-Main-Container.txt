@@ -1,1 +1,1 @@
-http://scinfe121.univ-pau.fr:7778/acc
+http://nicolas-visualisation:7778/acc

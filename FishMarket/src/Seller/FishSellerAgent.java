@@ -14,8 +14,6 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
  * Le marché ne sert que d'interface 
  */
 
-// TODO ajouter un nom à l'agent
-
 public class FishSellerAgent extends Agent{
     private FishSellerGui _myGui;
     private String _myName;
