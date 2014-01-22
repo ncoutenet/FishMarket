@@ -50,6 +50,7 @@ public class FishSellerAgent extends Agent{
 	
 	protected void setup(){
         _myGui = new FishSellerGui(this);
+        _myGui.setVisible(true);
         _myName = this.getAID().getName();
         String serviceName = "Fishmonger";
       	

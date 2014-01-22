@@ -59,6 +59,8 @@ public class FishSellerGui extends JFrame{
 		
 		getContentPane().add(p, BorderLayout.SOUTH);
 		
+		this.pack();
+		
 		//Quitte l'agent à la fermeture de la fenêtre
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {

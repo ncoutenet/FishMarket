@@ -16,6 +16,7 @@ public class FishBuyerAgent extends Agent{
     
     protected void setup(){
         _myGui = new FishBuyerGui(this);
+        _myGui.setVisible(true);
         
         // TODO s'enregistrer au niveau du marché
     }
