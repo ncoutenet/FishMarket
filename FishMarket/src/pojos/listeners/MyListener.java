@@ -8,7 +8,7 @@ public class MyListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equals("autobuy")){
-			
+			// TODO mettre a jour l'interface de l'acheteur
 		}
 
 	}
