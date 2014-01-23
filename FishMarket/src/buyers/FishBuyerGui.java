@@ -120,7 +120,7 @@ public class FishBuyerGui extends JFrame{
 	}
 
 	public Double getMaxPrice() {
-		return (Double)_maxPrice.getValue();
+		return Double.parseDouble(_maxPrice.getValue().toString());
 	}
 
 	public void setMaxPrice(String maxPrice) {
