@@ -82,17 +82,19 @@ public class FishSellerAgent extends Agent{
       		// Agents that want to use this service need to "speak" the FIPA-SL language
       		sd.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
       		sd.addProperties(new Property("fish", _fish));
-      		dfd.addServices(sd); 
+      		dfd.addServices(sd);
+      		
+      		AID agent = null;
       		
       		DFAgentDescription[] result = DFService.search(this, dfd);
       		if (result.length > 0){
-      			AID agent = result[0].getName();
+      			agent = result[0].getName();
           		sd.setName(serviceName);
       			System.out.println("DF trouvé: " + result[0].getName());
       		}else {
       			System.out.println("DF non trouvé!");
       		}
-      		//agent.register(this, dfd);
+      		DFService.register(this, agent, dfd);
       		
       	}
       	catch (FIPAException fe) {
