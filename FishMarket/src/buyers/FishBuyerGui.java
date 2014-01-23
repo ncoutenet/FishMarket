@@ -11,7 +11,7 @@ import jade.core.Agent;
 
 import javax.swing.*;
 
-import pojos.listeners.MyListener;
+import pojos.listeners.MyBuyerListener;
 
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
@@ -21,7 +21,7 @@ public class FishBuyerGui extends JFrame{
 		this._myAgent = agent;
 		
 		JCheckBox auto = new JCheckBox("Automatic");
-		auto.addActionListener(new MyListener());
+		auto.addActionListener(new MyBuyerListener());
 		auto.setActionCommand("autobuy");
 		auto.setSelected(true);
 		
