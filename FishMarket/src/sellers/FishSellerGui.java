@@ -31,13 +31,16 @@ public class FishSellerGui extends JFrame{
 	private MySellerListener _listener;
 	
 	public FishSellerGui(FishSellerAgent agent){
-		NumberFormat myFormat;
-		myFormat = NumberFormat.getNumberInstance();
-		myFormat.setMinimumFractionDigits(3);
+		NumberFormat myFormatPrice;
+		myFormatPrice = NumberFormat.getNumberInstance();
+		myFormatPrice.setMaximumFractionDigits(2);
+		NumberFormat myFormatTime;
+		myFormatTime = NumberFormat.getNumberInstance();
+		myFormatTime.setMaximumFractionDigits(3);
 		_myAgent = agent;
-		_priceField = new JFormattedTextField(myFormat);
+		_priceField = new JFormattedTextField(myFormatPrice);
 		_nameFish = new JTextField();
-		_timeOut =  new JFormattedTextField(myFormat);
+		_timeOut =  new JFormattedTextField(myFormatTime);
 		
 		_buyers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();
