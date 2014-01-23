@@ -18,8 +18,8 @@ public class FishMarketAgent extends jade.domain.df{
 
 	protected void setup(){
 		// Input df name
-		//   int len = 0;
-		//   byte[] buffer = new byte[1024];
+		int len = 0;
+		byte[] buffer = new byte[1024];
 
 		try {
 
@@ -48,7 +48,7 @@ public class FishMarketAgent extends jade.domain.df{
 		dfd.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("fish-market");
-		sd.setName("Fishmonger");
+		sd.setName("FishMarket");
 		// Agents that want to use this service need to "know" the weather-forecast-ontology
 		sd.addOntologies("fish-market-ontology");
 		// Agents that want to use this service need to "speak" the FIPA-SL language

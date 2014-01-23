@@ -62,7 +62,7 @@ public class FishSellerAgent extends Agent{
         _myGui = new FishSellerGui(this);
         _myGui.showGui();
         _myName = this.getAID().getName();
-        String serviceName = "Fishmonger";
+        String serviceName = "FishMonger";
       	
       	// Read the name of the service to register as an argument
       	Object[] args = getArguments();
@@ -76,23 +76,23 @@ public class FishSellerAgent extends Agent{
       		DFAgentDescription dfd = new DFAgentDescription();
       		ServiceDescription sd = new ServiceDescription();
       		sd.setType("fish-market");
-      		sd.setName(serviceName);
+      		sd.setName("FishMarket");
       		// Agents that want to use this service need to "know" the weather-forecast-ontology
       		sd.addOntologies("fish-market-ontology");
       		// Agents that want to use this service need to "speak" the FIPA-SL language
       		sd.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
       		sd.addProperties(new Property("fish", _fish));
-      		dfd.addServices(sd);
+      		dfd.addServices(sd); 
       		
       		DFAgentDescription[] result = DFService.search(this, dfd);
       		if (result.length > 0){
-      			dfd.setName(result[0].getName());
+      			AID agent = result[0].getName();
+          		sd.setName(serviceName);
       			System.out.println("DF trouvé: " + result[0].getName());
       		}else {
       			System.out.println("DF non trouvé!");
       		}
-      		
-  			DFService.register(this, dfd);
+      		//agent.register(this, dfd);
       		
       	}
       	catch (FIPAException fe) {
