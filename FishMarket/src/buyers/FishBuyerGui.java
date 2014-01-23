@@ -16,18 +16,19 @@ import pojos.listeners.MyBuyerListener;
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
 	private JTextField _maxPrice;
+	private JCheckBox _auto;
 	
 	public FishBuyerGui(FishBuyerAgent agent){
 		this._myAgent = agent;
 		
-		JCheckBox auto = new JCheckBox("Automatic");
-		auto.addActionListener(new MyBuyerListener());
-		auto.setActionCommand("autobuy");
-		auto.setSelected(true);
+		_auto = new JCheckBox("Automatic");
+		_auto.addActionListener(new MyBuyerListener(this));
+		_auto.setActionCommand("autobuy");
+		_auto.setSelected(true);
 		
-		this.getContentPane().add(auto, BorderLayout.NORTH);
+		this.getContentPane().add(_auto, BorderLayout.NORTH);
 		
-		if(auto.isSelected()){
+		if(_auto.isSelected()){
 			this.constructAutomaticMode();
 		} else{
 			this.contructManualMode();
@@ -40,7 +41,12 @@ public class FishBuyerGui extends JFrame{
 		});
 	}
 	
+	public boolean isAuto(){
+		return this._auto.isSelected();
+	}
+	
 	public void constructAutomaticMode(){
+		// TODO vider la fenetre
 		this._maxPrice = new JTextField();
 		JLabel labPrice = new JLabel("Maximum price: ");
 		JButton btnSubmit = new JButton("Submit");
@@ -73,7 +79,7 @@ public class FishBuyerGui extends JFrame{
 	}
 	
 	public void contructManualMode(){
-		
+		// TODO vider la fenetre
 		this.pack();
 	}
 
