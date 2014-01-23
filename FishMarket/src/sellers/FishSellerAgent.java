@@ -1,5 +1,6 @@
 package sellers;
 import pojos.Fish;
+import jade.core.AID;
 import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
@@ -7,6 +8,7 @@ import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import jade.gui.DFAgentDscDlg;
 
 /*
  * Faire les annonces sur le marché
@@ -18,6 +20,7 @@ public class FishSellerAgent extends Agent{
     private FishSellerGui _myGui;
     private String _myName;
     private double _price;
+	private Fish _fish;
     
     public String getMyName() {
 		return _myName;
@@ -26,8 +29,6 @@ public class FishSellerAgent extends Agent{
 	public void setMyName(String name) {
 		this._myName = name;
 	}
-
-	private Fish _fish;
 
 	public Fish getFish() {
 		return _fish;
@@ -73,10 +74,9 @@ public class FishSellerAgent extends Agent{
       	System.out.println("Agent "+getLocalName()+" registering service \""+serviceName+"\" of type \"weather-forecast\"");
       	try {
       		DFAgentDescription dfd = new DFAgentDescription();
-      		dfd.setName(getAID());
       		ServiceDescription sd = new ServiceDescription();
-      		sd.setName(serviceName);
       		sd.setType("fish-market");
+      		sd.setName(serviceName);
       		// Agents that want to use this service need to "know" the weather-forecast-ontology
       		sd.addOntologies("fish-market-ontology");
       		// Agents that want to use this service need to "speak" the FIPA-SL language
@@ -84,7 +84,16 @@ public class FishSellerAgent extends Agent{
       		sd.addProperties(new Property("fish", _fish));
       		dfd.addServices(sd);
       		
-      		DFService.register(this, dfd);
+      		DFAgentDescription[] result = DFService.search(this, dfd);
+      		if (result.length > 0){
+      			dfd.setName(result[0].getName());
+      			System.out.println("DF trouvé: " + result[0].getName());
+      		}else {
+      			System.out.println("DF non trouvé!");
+      		}
+      		
+  			DFService.register(this, dfd);
+      		
       	}
       	catch (FIPAException fe) {
       		fe.printStackTrace();
