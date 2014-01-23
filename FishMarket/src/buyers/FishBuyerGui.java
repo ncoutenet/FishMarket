@@ -11,6 +11,8 @@ import jade.core.Agent;
 
 import javax.swing.*;
 
+import pojos.listeners.MyListener;
+
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
 	private JTextField _maxPrice;
@@ -19,7 +21,15 @@ public class FishBuyerGui extends JFrame{
 		this._myAgent = agent;
 		
 		JCheckBox auto = new JCheckBox("Automatic");
-		// TODO lier auto au listener
+		auto.addActionListener(new MyListener());
+		auto.setActionCommand("autobuy");
+		auto.setSelected(true);
+		
+		this.getContentPane().add(auto, BorderLayout.NORTH);
+		
+		if(auto.isSelected()){
+			this.constructAutomaticMode();
+		}
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
