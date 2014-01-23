@@ -1,4 +1,4 @@
-package Seller;
+package sellers;
 import pojos.Fish;
 import jade.core.Agent;
 import jade.domain.DFService;
