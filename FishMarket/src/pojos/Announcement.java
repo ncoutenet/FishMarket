@@ -1,12 +1,15 @@
 package pojos;
 
+import sellers.FishSellerAgent;
+
 public class Announcement {
 	// TODO ajouter une référence au vendeur
+	private FishSellerAgent _myAgent;
 	private String _myPrice;
 
-	public Announcement(String price) {
-		// TODO modifier pour prendre le prix du vendeur
-		this._myPrice = price;
+	public Announcement(FishSellerAgent a) {
+		this._myAgent = a;
+		this._myPrice = String.valueOf(this._myAgent.getPrice());
 	}
 
 	/**
