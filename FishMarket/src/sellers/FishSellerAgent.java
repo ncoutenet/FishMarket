@@ -17,6 +17,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 public class FishSellerAgent extends Agent{
     private FishSellerGui _myGui;
     private String _myName;
+    private double _price;
     
     public String getMyName() {
 		return _myName;
@@ -36,6 +37,14 @@ public class FishSellerAgent extends Agent{
 		this._fish = fish;
 	}
 
+	public void setPrice(double p){
+		this._price = p;
+	}
+	
+	public double getPrice(){
+		return this._price;
+	}
+	
 	public void increasePrice(){
 		// TODO augmenter le prix
 	}
