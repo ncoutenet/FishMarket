@@ -1,4 +1,4 @@
-package Pojo;
+package pojos;
 
 public class Fish {
 	private float _price;

@@ -1,4 +1,4 @@
-package Market;
+package markets;
 
 import java.awt.Container;
 import java.awt.GridLayout;

@@ -1,4 +1,4 @@
-package Market;
+package markets;
 
 import jade.core.AID;
 import jade.core.Agent;

@@ -1,5 +1,5 @@
 package Seller;
-import Pojo.Fish;
+import pojos.Fish;
 import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;

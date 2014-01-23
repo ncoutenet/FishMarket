@@ -22,7 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import Pojo.Fish;
+import pojos.Fish;
+
 
 
 public class FishSellerGui extends JFrame{
