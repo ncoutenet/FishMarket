@@ -29,6 +29,8 @@ public class FishBuyerGui extends JFrame{
 		
 		if(auto.isSelected()){
 			this.constructAutomaticMode();
+		} else{
+			this.contructManualMode();
 		}
 		
 		addWindowListener(new WindowAdapter() {
@@ -66,6 +68,11 @@ public class FishBuyerGui extends JFrame{
 		p = new JPanel();
 		p.add(btnSubmit);
 		this.getContentPane().add(p, BorderLayout.SOUTH);
+		
+		this.pack();
+	}
+	
+	public void contructManualMode(){
 		
 		this.pack();
 	}
