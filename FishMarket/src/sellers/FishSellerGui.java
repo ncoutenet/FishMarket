@@ -2,27 +2,20 @@ package sellers;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.Format;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import pojos.Fish;
+import pojos.listeners.MySellerListener;
 
 
 
@@ -35,6 +28,7 @@ public class FishSellerGui extends JFrame{
 	
 	private Vector<Vector<String>> _buyers;
 	private JTable _buyTabler;
+	private MySellerListener _listener;
 	
 	public FishSellerGui(FishSellerAgent agent){
 		NumberFormat myFormat;
@@ -49,7 +43,9 @@ public class FishSellerGui extends JFrame{
 		Vector<String> header = new Vector<String>();
 		header.add("Buyers");
 		_buyTabler = new JTable(_buyers, header);
+		_listener = new MySellerListener(this);
 		JButton btnAnnonce = new JButton("Annonce");
+		btnAnnonce.addActionListener(_listener);
 		
 		JPanel p = new JPanel();
 		
@@ -61,23 +57,6 @@ public class FishSellerGui extends JFrame{
 		p.add(new JLabel("Time out: "));
 		p.add(_timeOut);
 		this.getContentPane().add(p, BorderLayout.NORTH);
-		
-		btnAnnonce.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try{
-					String type = _nameFish.getText();
-					float price = Float.valueOf(_priceField.getText());
-					
-					//mise à jour de l'agent
-					_myAgent.setFish(new Fish(type, price));
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(FishSellerGui.this, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		
 		p = new JPanel();
 		p.add(btnAnnonce);
@@ -100,6 +79,62 @@ public class FishSellerGui extends JFrame{
 		});
 	}
 	
+	public FishSellerAgent getMyAgent() {
+		return _myAgent;
+	}
+
+	public void setMyAgent(FishSellerAgent myAgent) {
+		this._myAgent = myAgent;
+	}
+
+	public JFormattedTextField getPriceField() {
+		return _priceField;
+	}
+
+	public void setPriceField(JFormattedTextField priceField) {
+		this._priceField = priceField;
+	}
+
+	public JTextField getNameFish() {
+		return _nameFish;
+	}
+
+	public void setNameFish(JTextField nameFish) {
+		this._nameFish = nameFish;
+	}
+
+	public JFormattedTextField getTimeOut() {
+		return _timeOut;
+	}
+
+	public void setTimeOut(JFormattedTextField timeOut) {
+		this._timeOut = timeOut;
+	}
+
+	public Vector<Vector<String>> getBuyers() {
+		return _buyers;
+	}
+
+	public void setBuyers(Vector<Vector<String>> buyers) {
+		this._buyers = buyers;
+	}
+
+	public JTable getBuyTabler() {
+		return _buyTabler;
+	}
+
+	public void setBuyTabler(JTable buyTabler) {
+		this._buyTabler = buyTabler;
+	}
+
+	public MySellerListener getListener() {
+		return _listener;
+	}
+
+	public void setListener(MySellerListener listener) {
+		this._listener = listener;
+	}
+
 	public void addBuyer(String buyer){
 		Vector<String> vect = new Vector<String>();
 		vect.add(buyer);
