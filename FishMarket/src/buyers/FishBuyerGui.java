@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Vector;
 
 import jade.core.Agent;
 
@@ -17,6 +18,10 @@ public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
 	private JTextField _maxPrice;
 	private JCheckBox _auto;
+	private JLabel _labSellerSelected;
+	
+	private JTable _sellTable;
+	private Vector<Vector<String>> _sellers; 
 	
 	public FishBuyerGui(FishBuyerAgent agent){
 		this._myAgent = agent;
@@ -26,13 +31,18 @@ public class FishBuyerGui extends JFrame{
 		_auto.setActionCommand("autobuy");
 		_auto.setSelected(true);
 		
-		this.getContentPane().add(_auto, BorderLayout.NORTH);
-		
 		if(_auto.isSelected()){
 			this.constructAutomaticMode();
 		} else{
 			this.contructManualMode();
 		}
+		
+		this._sellers = new Vector<Vector<String>>();
+		Vector<String> header = new Vector<String>();
+		header.add("Seller");
+		header.add("Price");
+		
+		this._sellTable = new JTable(this._sellers, header);
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
@@ -46,24 +56,15 @@ public class FishBuyerGui extends JFrame{
 	}
 	
 	public void constructAutomaticMode(){
-		// TODO vider la fenetre
+		this.getContentPane().removeAll();
+		
 		this._maxPrice = new JTextField();
 		JLabel labPrice = new JLabel("Maximum price: ");
 		JButton btnSubmit = new JButton("Submit");
-		btnSubmit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-					float price = Float.valueOf(_maxPrice.getText());
-					
-					// TODO mettre à jour l'agent
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(FishBuyerGui.this, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		btnSubmit.addActionListener(new MyBuyerListener(this));
+		btnSubmit.setActionCommand("btnsubmitbuyer");
+
+		this.getContentPane().add(_auto, BorderLayout.NORTH);
 		
 		JPanel p = new JPanel();
 		p.setLayout(new GridLayout(1, 2));
@@ -79,8 +80,38 @@ public class FishBuyerGui extends JFrame{
 	}
 	
 	public void contructManualMode(){
-		// TODO vider la fenetre
+		this.getContentPane().removeAll();
+		
+		this.getContentPane().add(_auto, BorderLayout.NORTH);
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.addActionListener(new MyBuyerListener(this));
+		btnBuy.setActionCommand("btnmanualbuy");
+		this._labSellerSelected = new JLabel();
+		
+		this.setLabelSellerSelected(null);
+		
+		JPanel p = new JPanel();
+		p.setLayout(new BorderLayout());
+		p.add(_sellTable.getTableHeader(), BorderLayout.NORTH);
+		p.add(_sellTable, BorderLayout.CENTER);
+		p.add(_labSellerSelected, BorderLayout.SOUTH);
+		this.getContentPane().add(p, BorderLayout.CENTER);
+		this.getContentPane().add(btnBuy, BorderLayout.SOUTH);
+		
 		this.pack();
+	}
+	
+	public void setLabelSellerSelected(String seller){
+		String text;
+		if(seller != null){
+			text = new String(seller);
+		}
+		else{
+			text = new String("No seller");
+		}
+		text += " selected!";
+		
+		this._labSellerSelected.setText(text);
 	}
 
 	public JTextField getMaxPrice() {

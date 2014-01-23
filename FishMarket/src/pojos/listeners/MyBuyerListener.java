@@ -3,6 +3,8 @@ package pojos.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import buyers.FishBuyerGui;
 
 public class MyBuyerListener implements ActionListener {
@@ -20,6 +22,19 @@ public class MyBuyerListener implements ActionListener {
 			}else{
 				_myGUI.contructManualMode();
 			}
+		}
+		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
+			try{
+				float price = Float.valueOf(this._myGUI.getMaxPrice().getText());
+				
+				// TODO mettre à jour l'agent
+			}
+			catch(Exception ex){
+				JOptionPane.showMessageDialog(this._myGUI, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		if(arg0.getActionCommand().equals("btnmanualbuy")){
+			// TODO achat manuel
 		}
 
 	}
