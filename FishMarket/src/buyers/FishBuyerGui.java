@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.Format;
+import java.text.NumberFormat;
 import java.util.Vector;
 
 import jade.core.Agent;
@@ -16,7 +18,7 @@ import pojos.listeners.MyBuyerListener;
 
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
-	private JTextField _maxPrice;
+	private JFormattedTextField _maxPrice;
 	private JCheckBox _auto;
 	private JLabel _labSellerSelected;
 	
@@ -58,7 +60,10 @@ public class FishBuyerGui extends JFrame{
 	public void constructAutomaticMode(){
 		this.getContentPane().removeAll();
 		
-		this._maxPrice = new JTextField();
+		NumberFormat myFormat;
+		myFormat = NumberFormat.getNumberInstance();
+		myFormat.setMaximumFractionDigits(2);
+		this._maxPrice = new JFormattedTextField(myFormat);
 		JLabel labPrice = new JLabel("Maximum price: ");
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new MyBuyerListener(this));
@@ -114,11 +119,11 @@ public class FishBuyerGui extends JFrame{
 		this._labSellerSelected.setText(text);
 	}
 
-	public JTextField getMaxPrice() {
-		return _maxPrice;
+	public Double getMaxPrice() {
+		return (Double)_maxPrice.getValue();
 	}
 
-	public void setMaxPrice(JTextField maxPrice) {
-		this._maxPrice = maxPrice;
+	public void setMaxPrice(String maxPrice) {
+		this._maxPrice.setText(maxPrice);
 	}
 }

@@ -25,7 +25,7 @@ public class MyBuyerListener implements ActionListener {
 		}
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
 			try{
-				float price = Float.valueOf(this._myGUI.getMaxPrice().getText());
+				double price = this._myGUI.getMaxPrice();
 				
 				// TODO mettre à jour l'agent
 			}
