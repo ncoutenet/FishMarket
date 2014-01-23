@@ -3,7 +3,6 @@ package pojos;
 import sellers.FishSellerAgent;
 
 public class Announcement {
-	// TODO ajouter une référence au vendeur
 	private FishSellerAgent _myAgent;
 	private String _myPrice;
 

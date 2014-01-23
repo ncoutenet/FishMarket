@@ -6,14 +6,13 @@ public class RegisterBehaviour extends Behaviour {
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
+		// TODO s'enregistrer auprès de marché
 
 	}
 
 	@Override
 	public boolean done() {
-		// TODO Auto-generated method stub
-		return false;
+		return true; //One shot
 	}
 
 }

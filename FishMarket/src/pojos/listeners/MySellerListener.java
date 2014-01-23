@@ -19,7 +19,7 @@ public class MySellerListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equals("btnPost")){ 
-			// TODO completer listener vendeur
+			// TODO envoyer l'annonce au marché
 			try{
 				String type = _myGui.getNameFish().getText();
 				float price = Float.valueOf(_myGui.getPriceField().getText());
