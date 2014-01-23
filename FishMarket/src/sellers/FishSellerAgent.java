@@ -1,4 +1,5 @@
 package sellers;
+
 import pojos.Fish;
 import jade.core.AID;
 import jade.core.Agent;
@@ -8,7 +9,6 @@ import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.gui.DFAgentDscDlg;
 
 /*
  * Faire les annonces sur le marché
@@ -71,7 +71,7 @@ public class FishSellerAgent extends Agent{
       	}*/
       	
       	// Register the service
-      	System.out.println("Agent "+getLocalName()+" registering service \""+serviceName+"\" of type \"weather-forecast\"");
+      	System.out.println("Agent "+getLocalName()+" registering service \""+serviceName+"\"");
       	try {
       		DFAgentDescription dfd = new DFAgentDescription();
       		ServiceDescription sd = new ServiceDescription();
@@ -85,15 +85,15 @@ public class FishSellerAgent extends Agent{
       		dfd.addServices(sd);
       		
       		AID agent = null;
-      		
-      		DFAgentDescription[] result = DFService.search(this, dfd);
-      		if (result.length > 0){
-      			agent = result[0].getName();
-          		sd.setName(serviceName);
-      			System.out.println("DF trouvé: " + result[0].getName());
-      		}else {
-      			System.out.println("DF non trouvé!");
+
+      		DFAgentDescription[] result = null;
+      		result = DFService.search(this, dfd);
+      		while (result.length < 1){
+          		result = DFService.search(this, dfd);
       		}
+  			agent = result[0].getName();
+      		sd.setName(serviceName);
+  			System.out.println("DF trouvé: " + result[0].getName());
       		DFService.register(this, agent, dfd);
       		
       	}
