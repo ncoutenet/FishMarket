@@ -1,15 +1,8 @@
 package sellers;
 
+import jade.core.Agent;
 import pojos.Fish;
 import sellers.behaviours.RegisterBehaviour;
-import jade.core.AID;
-import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAException;
-import jade.domain.FIPANames;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.Property;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 /*
  * Faire les annonces sur le marché
@@ -55,23 +48,11 @@ public class FishSellerAgent extends Agent{
         _myGui = new FishSellerGui(this);
         _myGui.showGui();
         _myName = this.getAID().getName();
-      	
-      	// Read the name of the service to register as an argument
-      	Object[] args = getArguments();
-      	/*if (args != null && args.length > 0) {
-      		serviceName = (String) args[0]; 
-      	}*/
-      	
-      	// Register the service
-      	System.out.println("Agent "+getLocalName()+" registering service");
-      	
     }
 	
 	public void registerToMarket(Fish f){
-		System.out.println("enregistrement du poisson à vendre");
 		this._fish = f;
 		this._price = this._fish.getPrice();
 		this.addBehaviour(new RegisterBehaviour(this));
-		System.out.println(_fish.getType() + " au prix de " + String.valueOf(_fish.getPrice()));
 	}
 }

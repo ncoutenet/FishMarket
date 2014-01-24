@@ -56,7 +56,6 @@ public class RegisterBehaviour extends Behaviour {
 		sd2.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
 		sd2.addProperties(new Property("fish", _seller.getFish().getType()));
 		dfd2.addServices(sd2);
-		System.out.println("DF trouvé: " + result[0].getName());
 
 		//enregistrement service
 		try {
