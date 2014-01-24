@@ -11,6 +11,7 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Vector;
 
+import jade.core.AID;
 import jade.core.Agent;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ import sellers.FishSellerAgent;
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
 	private JFormattedTextField _maxPrice;
+	private JTextField _fishType;
 	private JCheckBox _auto;
 	private JLabel _labSellerSelected;
 	
@@ -71,34 +73,42 @@ public class FishBuyerGui extends JFrame{
 		myFormat = NumberFormat.getNumberInstance();
 		myFormat.setMaximumFractionDigits(2);
 		this._maxPrice = new JFormattedTextField(myFormat);
+		this._fishType = new JTextField();
 		JLabel labPrice = new JLabel("Maximum price: ");
+		JLabel labType = new JLabel("Type of fish");
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new MyBuyerListener(this));
 		btnSubmit.setActionCommand("btnsubmitbuyer");
 
 		this.getContentPane().add(_auto, BorderLayout.NORTH);
 		
-		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(1, 2));
+		JPanel panel = new JPanel(new BorderLayout());
+		
+		JPanel p = new JPanel(new GridLayout(2, 2));
+		p.add(labType);
+		p.add(_fishType);
 		p.add(labPrice);
 		p.add(_maxPrice);
-		this.getContentPane().add(p, BorderLayout.CENTER);
+		panel.add(p, BorderLayout.CENTER);
+		panel.add(btnSubmit, BorderLayout.SOUTH);
+		this.getContentPane().add(panel, BorderLayout.CENTER);
 		
-		p = new JPanel();
-		p.add(btnSubmit);
+		p = new JPanel(new BorderLayout());
+		p.add(_sellTable.getTableHeader(), BorderLayout.NORTH);
+		p.add(_sellTable, BorderLayout.CENTER);
 		this.getContentPane().add(p, BorderLayout.SOUTH);
 		
 		this.pack();
 	}
 	
-	public void setSellers(List<FishSellerAgent> sellers){
+	public void setSellers(List<AID> sellers){
 		this._sellers.clear();
-		for(int i = 0; i < sellers.size(); i++){
-			Vector<String> agent = new Vector<String>();
-			agent.add(sellers.get(i).getName());
-			agent.add(sellers.get(i).getFish().getType());
-			agent.add(String.valueOf(sellers.get(i).getPrice()));
-		}
+		/*for(int i = 0; i < sellers.size(); i++){ 
+			Vector<String> agents = new Vector<String>();
+			agents.add(sellers.get(i).getName());
+			agents.add(sellers.get(i).getFish().getType());
+			agents.add(String.valueOf(sellers.get(i).getPrice()));
+		}*/
 	}
 	
 	public void constructManualMode(){

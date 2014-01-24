@@ -7,6 +7,7 @@ import buyers.behaviours.SearchBehaviour;
 
 import sellers.FishSellerAgent;
 
+import jade.core.AID;
 import jade.core.Agent;
 /*import jade.core.AID;
 import jade.core.behaviours.*;
@@ -21,7 +22,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;*/
 public class FishBuyerAgent extends Agent{
     private FishBuyerGui _myGui;
     private boolean _autoMode;
-    private List<FishSellerAgent> _sellers;
+    private List<AID> _sellers;
     
     public void setMode(boolean auto){
     	this._autoMode = auto;
@@ -30,7 +31,7 @@ public class FishBuyerAgent extends Agent{
     protected void setup(){
         _myGui = new FishBuyerGui(this);
         _myGui.setVisible(true);
-        this._sellers = new ArrayList<FishSellerAgent>();
+        this._sellers = new ArrayList<AID>();
         
         if(!this._autoMode){
         	addBehaviour(new SearchBehaviour(this));
@@ -39,11 +40,15 @@ public class FishBuyerAgent extends Agent{
         // TODO completer
     }
     
-    public void setSellers(FishSellerAgent[] agents){
+    public void setSellers(AID[] agents){
     	this._sellers.clear();
     	for(int i = 0; i < agents.length; i++){
     		this._sellers.add(agents[i]);
     	}
+    }
+    
+    private void findAnnounces(){
+		// TODO récupérer les infos de chaque seller
     	this._myGui.setSellers(_sellers);
     }
     

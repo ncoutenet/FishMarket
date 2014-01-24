@@ -2,6 +2,8 @@ package buyers.behaviours;
 
 import java.util.Iterator;
 
+import sellers.FishSellerAgent;
+
 import buyers.FishBuyerAgent;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
@@ -56,6 +58,7 @@ public class SearchBehaviour extends Behaviour {
 	  		DFAgentDescription[] results = DFService.search(this._myAgent, market, template, sc);
 	  		if (results.length > 0) {
 	  			System.out.println("Agent "+_myAgent.getLocalName()+" found the following Monger services:");
+	  			AID[] agents = new AID[results.length];
 	  			for (int i = 0; i < results.length; ++i) {
 	  				DFAgentDescription dfd = results[i];
 	  				AID provider = dfd.getName();
@@ -66,10 +69,11 @@ public class SearchBehaviour extends Behaviour {
 	  					ServiceDescription sd = (ServiceDescription) it.next();
 	  					if (sd.getType().equals("Monger")) {
 	  						System.out.println("- Service \""+sd.getName()+"\" provided by agent "+provider.getName());
-	  						// TODO récupérer l'agent concerné
 	  					}
 	  				}
+	  				agents[i] = provider;
 	  			}
+	  			this._myAgent.setSellers(agents);
 	  			this.setEndSearch(true); // TODO enlever ce point d'arret
 	  			
 	  		}	
