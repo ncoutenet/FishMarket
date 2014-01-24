@@ -21,7 +21,7 @@ public class MyBuyerListener implements ActionListener {
 			if(_myGUI.isAuto()){
 				_myGUI.constructAutomaticMode();
 			}else{
-				_myGUI.contructManualMode();
+				_myGUI.constructManualMode();
 			}
 		}
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){

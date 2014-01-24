@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.Format;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Vector;
 
 import jade.core.Agent;
@@ -15,6 +16,7 @@ import jade.core.Agent;
 import javax.swing.*;
 
 import pojos.listeners.MyBuyerListener;
+import sellers.FishSellerAgent;
 
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
@@ -36,6 +38,7 @@ public class FishBuyerGui extends JFrame{
 		this._sellers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();
 		header.add("Seller");
+		header.add("Fish");
 		header.add("Price");
 		
 		this._sellTable = new JTable(this._sellers, header);
@@ -43,7 +46,7 @@ public class FishBuyerGui extends JFrame{
 		if(_auto.isSelected()){
 			this.constructAutomaticMode();
 		} else{
-			this.contructManualMode();
+			this.constructManualMode();
 		}
 		
 		addWindowListener(new WindowAdapter() {
@@ -88,7 +91,17 @@ public class FishBuyerGui extends JFrame{
 		this.pack();
 	}
 	
-	public void contructManualMode(){
+	public void setSellers(List<FishSellerAgent> sellers){
+		this._sellers.clear();
+		for(int i = 0; i < sellers.size(); i++){
+			Vector<String> agent = new Vector<String>();
+			agent.add(sellers.get(i).getName());
+			agent.add(sellers.get(i).getFish().getType());
+			agent.add(String.valueOf(sellers.get(i).getPrice()));
+		}
+	}
+	
+	public void constructManualMode(){
 		this.getContentPane().removeAll();
 		
 		this.getContentPane().add(_auto, BorderLayout.NORTH);

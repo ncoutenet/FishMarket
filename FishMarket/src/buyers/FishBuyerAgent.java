@@ -39,6 +39,14 @@ public class FishBuyerAgent extends Agent{
         // TODO completer
     }
     
+    public void setSellers(FishSellerAgent[] agents){
+    	this._sellers.clear();
+    	for(int i = 0; i < agents.length; i++){
+    		this._sellers.add(agents[i]);
+    	}
+    	this._myGui.setSellers(_sellers);
+    }
+    
     public void setBuyMode(){
     	if(this._autoMode){
     		// TODO comportement automatique
