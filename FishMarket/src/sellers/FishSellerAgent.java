@@ -33,11 +33,11 @@ public class FishSellerAgent extends Agent{
 	}
 	
 	public void increasePrice(){
-		// TODO augmenter le prix
+		_price = _price * 6/5;
 	}
 	
 	public void decreasePrice(){
-		// TODO baisser le prix
+		_price = _price * 4/5;
 	}
 	
 	public void sendToMarket(){
