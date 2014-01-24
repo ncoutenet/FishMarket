@@ -53,7 +53,7 @@ public class FishMarketAgent extends jade.domain.df{
 		sd.addOntologies("fish-market-ontology");
 		// Agents that want to use this service need to "speak" the FIPA-SL language
 		sd.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
-		sd.addProperties(new Property("fish", _fish));
+		sd.addProperties(new Property("Seller", "Fish"));
 		dfd.addServices(sd);
 		return dfd;
 	}
