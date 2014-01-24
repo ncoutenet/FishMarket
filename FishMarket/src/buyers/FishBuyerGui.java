@@ -112,14 +112,30 @@ public class FishBuyerGui extends JFrame{
 		// TODO récupérer les infos des vendeurs pour affichage
 		
 		for(int i = 0; i < sellers.size(); i++){ 
-			Vector<String> agents = new Vector<String>();
+			/*Vector<String> agents = new Vector<String>();
 			agents.add(sellers.get(i).getName());
 			if(this.isAuto()){
 				agents.add(_fishType.getText());
 			} else{
 				agents.add(types.get(i));
 			}
-			agents.add(prices.get(i));
+			agents.add(prices.get(i));*/
+			Vector<String> data = new Vector<String>();
+			data.add(0, sellers.get(i).getName().toString());
+			if (isAuto()){
+				data.add(1, _fishType.getText());
+			} else{
+				data.add(1, types.get(i));
+			}
+			data.add(2, prices.get(i));
+			
+			_sellers.add(data);
+			
+			if (isAuto()){
+				constructAutomaticMode();
+			} else{
+				constructManualMode();
+			}
 		}
 	}
 	
