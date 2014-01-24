@@ -17,6 +17,7 @@ public class MyBuyerListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equals("autobuy")){
+			_myGUI.getMyAgent().setMode(_myGUI.isAuto());
 			if(_myGUI.isAuto()){
 				_myGUI.constructAutomaticMode();
 			}else{

@@ -31,13 +31,7 @@ public class FishBuyerGui extends JFrame{
 		_auto = new JCheckBox("Automatic");
 		_auto.addActionListener(new MyBuyerListener(this));
 		_auto.setActionCommand("autobuy");
-		_auto.setSelected(true);
-		
-		if(_auto.isSelected()){
-			this.constructAutomaticMode();
-		} else{
-			this.contructManualMode();
-		}
+		_auto.setSelected(false);
 		
 		this._sellers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();
@@ -45,6 +39,12 @@ public class FishBuyerGui extends JFrame{
 		header.add("Price");
 		
 		this._sellTable = new JTable(this._sellers, header);
+
+		if(_auto.isSelected()){
+			this.constructAutomaticMode();
+		} else{
+			this.contructManualMode();
+		}
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
@@ -52,7 +52,11 @@ public class FishBuyerGui extends JFrame{
 			}
 		});
 	}
-	
+
+	public FishBuyerAgent getMyAgent() {
+		return _myAgent;
+	}
+
 	public boolean isAuto(){
 		return this._auto.isSelected();
 	}

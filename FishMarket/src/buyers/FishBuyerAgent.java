@@ -13,11 +13,24 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;*/
 
 public class FishBuyerAgent extends Agent{
     private FishBuyerGui _myGui;
+    private boolean _autoMode;
+    
+    public void setMode(boolean auto){
+    	this._autoMode = auto;
+    }
     
     protected void setup(){
         _myGui = new FishBuyerGui(this);
         _myGui.setVisible(true);
         
         // TODO completer
+    }
+    
+    public void setBuyMode(){
+    	if(this._autoMode){
+    		// TODO comportement automatique
+    	} else{
+    		// TODO comportement manuel
+    	}
     }
 }
