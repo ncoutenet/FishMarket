@@ -18,8 +18,6 @@ import javax.swing.JTextField;
 import listeners.MySellerListener;
 
 
-
-
 public class FishSellerGui extends JFrame{
 	private FishSellerAgent _myAgent;
 	

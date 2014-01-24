@@ -1,6 +1,8 @@
 package sellers;
 
 import jade.core.Agent;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 import pojos.Fish;
 import sellers.behaviours.RegisterBehaviour;
 
@@ -50,5 +52,19 @@ public class FishSellerAgent extends Agent{
 		this._fish = f;
 		this._price = this._fish.getPrice();
 		this.addBehaviour(new RegisterBehaviour(this));
+		response();
+	}
+	
+	public void response(){
+		ACLMessage request = receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+		String demande = request.getContent();
+		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
+		reply.addReceiver(request.getSender());
+		if (demande.equals("price")){
+			reply.setContent(String.valueOf(_price));
+		} else{
+			reply.setContent("NAN");
+		}
+		send(reply);
 	}
 }
