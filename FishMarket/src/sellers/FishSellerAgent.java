@@ -1,6 +1,7 @@
 package sellers;
 
 import pojos.Fish;
+import sellers.behaviours.RegisterBehaviour;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.domain.DFService;
@@ -32,14 +33,6 @@ public class FishSellerAgent extends Agent{
 
 	public Fish getFish() {
 		return _fish;
-	}
-
-	public void setFish(Fish fish) {
-		this._fish = fish;
-	}
-
-	public void setPrice(double p){
-		this._price = p;
 	}
 	
 	public double getPrice(){
@@ -73,4 +66,12 @@ public class FishSellerAgent extends Agent{
       	System.out.println("Agent "+getLocalName()+" registering service");
       	
     }
+	
+	public void registerToMarket(Fish f){
+		System.out.println("enregistrement du poisson à vendre");
+		this._fish = f;
+		this._price = this._fish.getPrice();
+		this.addBehaviour(new RegisterBehaviour(this));
+		System.out.println(_fish.getType() + " au prix de " + String.valueOf(_fish.getPrice()));
+	}
 }

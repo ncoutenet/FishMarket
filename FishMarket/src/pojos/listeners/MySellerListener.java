@@ -19,13 +19,11 @@ public class MySellerListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equals("btnPost")){ 
-			// TODO envoyer l'annonce au marché
 			try{
-				String type = _myGui.getNameFish().getText();
-				float price = Float.valueOf(_myGui.getPriceField().getText());
+				Fish f = new Fish(_myGui.getNameFish().getText(), Double.parseDouble(_myGui.getPriceField().getValue().toString()));
 				
-				//mise à jour de l'agent
-				_myGui.getMyAgent().setFish(new Fish(type, price));
+				//mise à jour de l'agent et enregistrement au marché
+				_myGui.getMyAgent().registerToMarket(f);
 			}
 			catch(Exception ex){
 				JOptionPane.showMessageDialog(_myGui, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
