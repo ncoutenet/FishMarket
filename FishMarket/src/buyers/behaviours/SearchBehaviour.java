@@ -14,11 +14,9 @@ import jade.domain.FIPAAgentManagement.SearchConstraints;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public class SearchBehaviour extends Behaviour {
-	private boolean _endSearch;
 	private FishBuyerAgent _myAgent;
 	
 	public SearchBehaviour(FishBuyerAgent a){
-		this._endSearch = false;
 		this._myAgent = a;
 	}
 	@Override
@@ -74,7 +72,6 @@ public class SearchBehaviour extends Behaviour {
 	  				agents[i] = provider;
 	  			}
 	  			this._myAgent.setSellers(agents);
-	  			this.setEndSearch(true); // TODO enlever ce point d'arret
 	  			
 	  		}	
 	  		else {
@@ -88,13 +85,6 @@ public class SearchBehaviour extends Behaviour {
 
 	@Override
 	public boolean done() {
-		return this._endSearch;
+		return _myAgent.isEndSearch();
 	}
-	public boolean isEndSearch() {
-		return _endSearch;
-	}
-	public void setEndSearch(boolean endSearch) {
-		this._endSearch = endSearch;
-	}
-
 }

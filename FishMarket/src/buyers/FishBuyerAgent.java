@@ -22,20 +22,25 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;*/
 public class FishBuyerAgent extends Agent{
     private FishBuyerGui _myGui;
     private boolean _autoMode;
+    private boolean _endSearch;
+    
     private List<AID> _sellers;
     
     public void setMode(boolean auto){
     	this._autoMode = auto;
     }
     
-    protected void setup(){
+    public boolean isEndSearch() {
+		return _endSearch;
+	}
+
+	protected void setup(){
         _myGui = new FishBuyerGui(this);
         _myGui.setVisible(true);
         this._sellers = new ArrayList<AID>();
+        _endSearch = false;
         
-        if(!this._autoMode){
-        	addBehaviour(new SearchBehaviour(this));
-        }
+    	addBehaviour(new SearchBehaviour(this));
         
         // TODO completer
     }
