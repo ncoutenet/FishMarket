@@ -51,6 +51,7 @@ public class FishSellerAgent extends Agent{
 		this._fish = f;
 		this.addBehaviour(new RegisterBehaviour(this));
 		response();
+		response();
 	}
 	
 	public void response(){
