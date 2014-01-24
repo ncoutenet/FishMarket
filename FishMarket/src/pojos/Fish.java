@@ -1,10 +1,10 @@
 package pojos;
 
 public class Fish {
-	private float _price;
+	private double _price;
 	private String _type;
 	
-	public Fish(String type, float price){
+	public Fish(String type, double price){
 		this._price = price;
 		this._type = type;
 	}
@@ -15,10 +15,10 @@ public class Fish {
 	public void setType(String type) {
 		this._type = type;
 	}
-	public float getPrice() {
+	public double getPrice() {
 		return _price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this._price = price;
 	}
 }
