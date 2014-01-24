@@ -23,10 +23,10 @@ public class RegisterBehaviour extends Behaviour {
 		DFAgentDescription dfd = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("fish-market");
-		sd.setName("FishMarket");
+		/*sd.setName("FishMarket");
 		sd.addOntologies("fish-market-ontology");
 		sd.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
-		sd.addProperties(new Property("Seller", "Fish"));
+		sd.addProperties(new Property("Seller", "Fish"));*/
 		dfd.addServices(sd);
 
 		//recherche du dfMarket

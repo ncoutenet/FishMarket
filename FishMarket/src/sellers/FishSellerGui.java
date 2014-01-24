@@ -47,7 +47,7 @@ public class FishSellerGui extends JFrame{
 		header.add("Buyers");
 		_buyTabler = new JTable(_buyers, header);
 		_listener = new MySellerListener(this);
-		JButton btnAnnonce = new JButton("Annonce");
+		JButton btnAnnonce = new JButton("Announce");
 		btnAnnonce.addActionListener(_listener);
 		btnAnnonce.setActionCommand("btnPost");
 		
