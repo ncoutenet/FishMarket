@@ -65,6 +65,7 @@ public class FishBuyerAgent extends Agent{
         // TODO completer
     }
     
+	// TODO arreter la recherche dès qu'on a trouvé un vendeur
     public void setSellers(AID[] agents){
     	this._sellers.clear();
     	for(int i = 0; i < agents.length; i++){
