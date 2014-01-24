@@ -10,6 +10,7 @@ import jade.core.behaviours.Behaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.SearchConstraints;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 
@@ -46,6 +47,9 @@ public class SearchBehaviour extends Behaviour {
 	  		DFAgentDescription template = new DFAgentDescription();
 	  		ServiceDescription templateSd = new ServiceDescription();
 	  		templateSd.setType("Monger");
+	  		if(_myAgent.isAuto()){
+	  			templateSd.addProperties(new Property("fish", _myAgent.getGUI().getFishType()));
+	  		}
 	  		template.addServices(templateSd);
 	  		
 	  		SearchConstraints sc = new SearchConstraints();

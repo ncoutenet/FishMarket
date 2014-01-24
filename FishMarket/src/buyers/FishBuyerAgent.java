@@ -2,9 +2,13 @@ package buyers;
 
 import jade.core.AID;
 import jade.core.Agent;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pojos.Fish;
 
 import buyers.behaviours.SearchBehaviour;
 
@@ -14,15 +18,36 @@ public class FishBuyerAgent extends Agent{
     private FishBuyerGui _myGui;
     private boolean _autoMode;
     private boolean _endSearch;
+    private Fish _fish;
     
     private List<AID> _sellers;
     
-    public void setMode(boolean auto){
+    public Fish getFish() {
+		return _fish;
+	}
+
+	public void setFish(Fish fish) {
+		this._fish = fish;
+	}
+	
+	public void setNewFish(String type, double price){
+		this._fish = new Fish(type, price);
+	}
+
+	public void setMode(boolean auto){
     	this._autoMode = auto;
     }
     
-    public boolean isEndSearch() {
+    public boolean isAuto() {
+		return _autoMode;
+	}
+
+	public boolean isEndSearch() {
 		return _endSearch;
+	}
+
+	public FishBuyerGui getGUI() {
+		return _myGui;
 	}
 
 	protected void setup(){
@@ -31,7 +56,11 @@ public class FishBuyerAgent extends Agent{
         this._sellers = new ArrayList<AID>();
         _endSearch = false;
         
-    	addBehaviour(new SearchBehaviour(this));
+    	if(this.isAuto()){
+    		this.automatic();
+    	}else{
+    		this.manual();
+    	}
         
         // TODO completer
     }
@@ -41,17 +70,46 @@ public class FishBuyerAgent extends Agent{
     	for(int i = 0; i < agents.length; i++){
     		this._sellers.add(agents[i]);
     	}
+    	this.findAnnounces();
     }
     
     private void findAnnounces(){
-    	this._myGui.setSellers(_sellers);
+		List<String> prices = new ArrayList<String>();
+		List<String> types = new ArrayList<String>();
+    	for(int i = 0; i < _sellers.size(); i++){		
+			AID seller = _sellers.get(i);
+			types.add(this.findType(seller));
+			prices.add(findPrice(seller));
+		}
+    	this._myGui.setSellers(_sellers, types, prices);
     }
     
-    public void setBuyMode(){
-    	if(this._autoMode){
-    		// TODO comportement automatique
-    	} else{
-    		// TODO comportement manuel
-    	}
+    private String findType(AID agent){
+    	ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
+		msg.addReceiver(agent);
+		msg.setContent("type");
+		send(msg);
+		
+		ACLMessage reply = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		return reply.getContent();
+    }
+    
+    private String findPrice(AID agent){
+    	ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
+		msg.addReceiver(agent);
+		msg.setContent("price");
+		send(msg);
+		
+		ACLMessage reply = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		return reply.getContent();
+    }
+    
+    public void automatic(){
+    	// TODO comportement automatique
+    }
+    
+    public void manual(){
+    	// TODO comportement manuel
+		addBehaviour(new SearchBehaviour(this));
     }
 }

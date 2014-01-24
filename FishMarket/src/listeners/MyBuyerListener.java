@@ -27,8 +27,10 @@ public class MyBuyerListener implements ActionListener {
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
 			try{
 				double price = this._myGUI.getMaxPrice();
+				String type = this._myGUI.getFishType();
 				
-				// TODO mettre à jour l'agent
+				this._myGUI.getMyAgent().setNewFish(type, price);
+				this._myGUI.getMyAgent().automatic();
 			}
 			catch(Exception ex){
 				JOptionPane.showMessageDialog(this._myGUI, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -8,13 +8,18 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.Format;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 import jade.core.AID;
 import jade.core.Agent;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 import javax.swing.*;
+
+import pojos.Fish;
 
 import listeners.MyBuyerListener;
 
@@ -102,15 +107,20 @@ public class FishBuyerGui extends JFrame{
 		this.pack();
 	}
 	
-	public void setSellers(List<AID> sellers){
+	public void setSellers(List<AID> sellers,List<String> types, List<String> prices){
 		this._sellers.clear();
 		// TODO récupérer les infos des vendeurs pour affichage
-		/*for(int i = 0; i < sellers.size(); i++){ 
+		
+		for(int i = 0; i < sellers.size(); i++){ 
 			Vector<String> agents = new Vector<String>();
 			agents.add(sellers.get(i).getName());
-			agents.add(sellers.get(i).getFish().getType());
-			agents.add(String.valueOf(sellers.get(i).getPrice()));
-		}*/
+			if(this.isAuto()){
+				agents.add(_fishType.getText());
+			} else{
+				agents.add(types.get(i));
+			}
+			agents.add(prices.get(i));
+		}
 	}
 	
 	public void constructManualMode(){
@@ -146,6 +156,10 @@ public class FishBuyerGui extends JFrame{
 		text += " selected!";
 		
 		this._labSellerSelected.setText(text);
+	}
+
+	public String getFishType() {
+		return _fishType.getText();
 	}
 
 	public Double getMaxPrice() {
