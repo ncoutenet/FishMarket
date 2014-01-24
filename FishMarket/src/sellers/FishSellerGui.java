@@ -15,7 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import pojos.listeners.MySellerListener;
+import listeners.MySellerListener;
+
 
 
 

@@ -21,7 +21,6 @@ public class SearchBehaviour extends Behaviour {
 	}
 	@Override
 	public void action() {
-		// TODO chercher les vendeurs sur le marché
 		// Search for services of type "Monger"
 	  	System.out.println("Agent "+_myAgent.getLocalName()+" searching for services of type \"Monger\"");
 	  	try {

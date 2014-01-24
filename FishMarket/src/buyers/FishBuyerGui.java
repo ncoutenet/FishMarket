@@ -16,7 +16,8 @@ import jade.core.Agent;
 
 import javax.swing.*;
 
-import pojos.listeners.MyBuyerListener;
+import listeners.MyBuyerListener;
+
 import sellers.FishSellerAgent;
 
 public class FishBuyerGui extends JFrame{
@@ -103,6 +104,7 @@ public class FishBuyerGui extends JFrame{
 	
 	public void setSellers(List<AID> sellers){
 		this._sellers.clear();
+		// TODO récupérer les infos des vendeurs pour affichage
 		/*for(int i = 0; i < sellers.size(); i++){ 
 			Vector<String> agents = new Vector<String>();
 			agents.add(sellers.get(i).getName());

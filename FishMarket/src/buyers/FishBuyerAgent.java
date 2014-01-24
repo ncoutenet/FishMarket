@@ -53,7 +53,6 @@ public class FishBuyerAgent extends Agent{
     }
     
     private void findAnnounces(){
-		// TODO récupérer les infos de chaque seller
     	this._myGui.setSellers(_sellers);
     }
     

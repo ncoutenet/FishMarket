@@ -40,10 +40,6 @@ public class FishSellerAgent extends Agent{
 		_price = _price * 4/5;
 	}
 	
-	public void sendToMarket(){
-		// TODO envoyer le type et le prix du poisson au marché
-	}
-	
 	protected void setup(){
         _myGui = new FishSellerGui(this);
         _myGui.showGui();
