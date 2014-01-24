@@ -54,7 +54,11 @@ public class FishSellerAgent extends Agent{
 	}
 	
 	public void response(){
-		ACLMessage request = receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+		// TODO a mettre en cyclic behaviour (ou pas)
+		ACLMessage request = null;
+		while (request == null){
+			request = receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
+		}
 		String demande = request.getContent();
 		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
 		reply.addReceiver(request.getSender());
