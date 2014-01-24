@@ -15,7 +15,6 @@ import sellers.behaviours.RegisterBehaviour;
 public class FishSellerAgent extends Agent{
     private FishSellerGui _myGui;
     private String _myName;
-    private double _price;
 	private Fish _fish;
     
     public String getMyName() {
@@ -31,15 +30,15 @@ public class FishSellerAgent extends Agent{
 	}
 	
 	public double getPrice(){
-		return this._price;
+		return this._fish.getPrice();
 	}
 	
 	public void increasePrice(){
-		_price = _price * 6/5;
+		_fish.setPrice(_fish.getPrice() * 6/5);
 	}
 	
 	public void decreasePrice(){
-		_price = _price * 4/5;
+		_fish.setPrice(_fish.getPrice() * 4/5);
 	}
 	
 	protected void setup(){
@@ -50,7 +49,6 @@ public class FishSellerAgent extends Agent{
 	
 	public void registerToMarket(Fish f){
 		this._fish = f;
-		this._price = this._fish.getPrice();
 		this.addBehaviour(new RegisterBehaviour(this));
 		response();
 	}
@@ -61,8 +59,10 @@ public class FishSellerAgent extends Agent{
 		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
 		reply.addReceiver(request.getSender());
 		if (demande.equals("price")){
-			reply.setContent(String.valueOf(_price));
-		} else{
+			reply.setContent(String.valueOf(_fish.getPrice()));
+		}else if (demande.equals("type")){
+			reply.setContent(_fish.getType());
+		}else{
 			reply.setContent("NAN");
 		}
 		send(reply);
