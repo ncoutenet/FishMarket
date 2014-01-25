@@ -25,7 +25,7 @@ public class SendBidBehaviour extends Behaviour {
 		ACLMessage reply = this._myAgent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
 		String response = reply.getContent();
 		if(response.equals("yes")){
-			// TODO acheter le poisson
+			this._myAgent.buyFish(this._seller);
 		}
 
 	}

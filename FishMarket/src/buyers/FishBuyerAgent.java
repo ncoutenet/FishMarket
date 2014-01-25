@@ -125,6 +125,10 @@ public class FishBuyerAgent extends Agent{
     	this.addBehaviour(new SendBidBehaviour(this, seller));
     }
     
+    public void buyFish(AID seller){
+		// TODO acheter le poisson
+    }
+    
     public void manual(){
     	// TODO comportement manuel
 		addBehaviour(new SearchBehaviour(this));
