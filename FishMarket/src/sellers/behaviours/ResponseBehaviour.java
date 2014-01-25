@@ -39,8 +39,8 @@ public class ResponseBehaviour extends Behaviour {
 		}
 		if (!demande.equals("bid")){
 			this._myAgent.send(reply);
+			System.out.println("envoi reponse");
 		}
-		System.out.println("envoi reponse");
 	}
 
 	@Override

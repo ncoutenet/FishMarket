@@ -1,15 +1,14 @@
 package sellers.behaviours;
 
-import sellers.FishSellerAgent;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
-import jade.core.behaviours.ParallelBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import sellers.FishSellerAgent;
 
 public class RegisterBehaviour extends Behaviour {
 	private FishSellerAgent _seller;
@@ -24,10 +23,6 @@ public class RegisterBehaviour extends Behaviour {
 		DFAgentDescription dfd = new DFAgentDescription();
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("fish-market");
-		/*sd.setName("FishMarket");
-		sd.addOntologies("fish-market-ontology");
-		sd.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
-		sd.addProperties(new Property("Seller", "Fish"));*/
 		dfd.addServices(sd);
 
 		//recherche du dfMarket
@@ -47,6 +42,7 @@ public class RegisterBehaviour extends Behaviour {
 			}
 		}
 		agent = result[0].getName();
+		_seller.setMarket(agent);
 
 		//creation du dfd et sd pour enregistrement service
 		DFAgentDescription dfd2 = new DFAgentDescription();

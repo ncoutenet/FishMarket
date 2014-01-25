@@ -1,10 +1,5 @@
 package buyers.behaviours;
 
-import java.util.Iterator;
-
-import sellers.FishSellerAgent;
-
-import buyers.FishBuyerAgent;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.domain.DFService;
@@ -13,6 +8,10 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.SearchConstraints;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+
+import java.util.Iterator;
+
+import buyers.FishBuyerAgent;
 
 public class SearchBehaviour extends Behaviour {
 	private FishBuyerAgent _myAgent;

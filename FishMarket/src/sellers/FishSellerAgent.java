@@ -1,17 +1,17 @@
 package sellers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.ParallelBehaviour;
 import jade.core.behaviours.SequentialBehaviour;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import pojos.Fish;
 import sellers.behaviours.RegisterBehaviour;
 import sellers.behaviours.ResponseBehaviour;
+import sellers.behaviours.TreatBidBehaviour;
 
 /*
  * Faire les annonces sur le marché
@@ -26,6 +26,16 @@ public class FishSellerAgent extends Agent{
 	private boolean _sell;
 	private boolean _timeOut;
 	private List<AID> _bidders;
+	private AID _market;
+	private TreatBidBehaviour _treat;
+
+	public AID getMarket() {
+		return _market;
+	}
+
+	public void setMarket(AID market) {
+		this._market = market;
+	}
 
 	public List<AID> getBidders() {
 		return _bidders;
@@ -81,6 +91,7 @@ public class FishSellerAgent extends Agent{
 
 	public void decreasePrice(){
 		_fish.setPrice(_fish.getPrice() * 4/5);
+		System.out.println("decrease");
 	}
 
 	protected void setup(){
@@ -94,10 +105,17 @@ public class FishSellerAgent extends Agent{
 
 	public void registerToMarket(Fish f){
 		this._fish = f;
-		//creation behaviour sequentiel
 		SequentialBehaviour seq = new SequentialBehaviour(this);
 		seq.addSubBehaviour(new RegisterBehaviour(this));
-		seq.addSubBehaviour(new ResponseBehaviour(this));
+		ParallelBehaviour para = new ParallelBehaviour();
+		para.addSubBehaviour(new ResponseBehaviour(this));
+		_treat = new TreatBidBehaviour(this, 5000);
+		para.addSubBehaviour(_treat);
+		seq.addSubBehaviour(para);
 		addBehaviour(seq);
+	}
+	
+	public void stop(){
+		_treat.stop();
 	}
 }

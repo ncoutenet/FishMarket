@@ -127,6 +127,7 @@ public class FishBuyerAgent extends Agent{
     
     public void buyFish(AID seller){
 		// TODO acheter le poisson
+    	System.out.println("achat poisson");
     }
     
     public void manual(){

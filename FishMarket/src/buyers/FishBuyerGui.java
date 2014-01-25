@@ -1,29 +1,25 @@
 package buyers;
 
+import jade.core.AID;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.Format;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import jade.core.AID;
-import jade.core.Agent;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
-
-import javax.swing.*;
-
-import pojos.Fish;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import listeners.MyBuyerListener;
-
-import sellers.FishSellerAgent;
 
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
@@ -113,7 +109,6 @@ public class FishBuyerGui extends JFrame{
 	
 	public void setSellers(List<AID> sellers,List<String> types, List<String> prices){
 		this._sellers.clear();
-		// TODO récupérer les infos des vendeurs pour affichage
 		
 		for(int i = 0; i < sellers.size(); i++){
 			String name = sellers.get(i).getName().toString();

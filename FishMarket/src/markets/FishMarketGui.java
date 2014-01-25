@@ -1,9 +1,6 @@
 package markets;
 
-import java.awt.Container;
-import java.awt.GridLayout;
-
-import javax.swing.*;
+import javax.swing.JFrame;
 
 
 public class FishMarketGui extends JFrame {

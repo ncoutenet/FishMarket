@@ -1,7 +1,6 @@
 package markets;
 
 import jade.core.AID;
-import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
@@ -9,17 +8,9 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 
-import java.util.*;
-
-import pojos.Fish;
-
 public class FishMarketAgent extends jade.domain.df{
-	private Fish _fish;
 
 	protected void setup(){
-		// Input df name
-		int len = 0;
-		byte[] buffer = new byte[1024];
 
 		try {
 

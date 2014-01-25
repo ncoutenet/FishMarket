@@ -1,10 +1,10 @@
 package buyers.behaviours;
 
-import buyers.FishBuyerAgent;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import buyers.FishBuyerAgent;
 
 public class SendBidBehaviour extends Behaviour {
 	private FishBuyerAgent _myAgent;
@@ -24,7 +24,7 @@ public class SendBidBehaviour extends Behaviour {
 		
 		ACLMessage reply = this._myAgent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
 		String response = reply.getContent();
-		if(response.equals("yes")){
+		if(response.equals("YES")){
 			this._myAgent.buyFish(this._seller);
 		}
 
