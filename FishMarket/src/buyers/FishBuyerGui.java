@@ -67,6 +67,10 @@ public class FishBuyerGui extends JFrame{
 	public FishBuyerAgent getMyAgent() {
 		return _myAgent;
 	}
+	
+	public int getSelectedSeller(){
+		return this._sellTable.getSelectedRow();
+	}
 
 	public boolean isAuto(){
 		return this._auto.isSelected();

@@ -28,6 +28,14 @@ public class MyBuyerListener implements ActionListener {
 			try{
 				double price = this._myGUI.getMaxPrice();
 				String type = this._myGUI.getFishType();
+				int indexAgent = _myGUI.getSelectedSeller();
+				
+				if(indexAgent == -1){
+					JOptionPane.showMessageDialog(this._myGUI, "No seller selected!", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					// TODO bider le vendeur séléctionné
+				}
 				
 				this._myGUI.getMyAgent().setNewFish(type, price);
 				this._myGUI.getMyAgent().automatic();
