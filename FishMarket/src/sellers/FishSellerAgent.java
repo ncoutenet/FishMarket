@@ -5,6 +5,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import pojos.Fish;
 import sellers.behaviours.RegisterBehaviour;
+import sellers.behaviours.ResponseBehaviour;
 
 /*
  * Faire les annonces sur le marché
@@ -51,25 +52,10 @@ public class FishSellerAgent extends Agent{
 		this._fish = f;
 		this.addBehaviour(new RegisterBehaviour(this));
 		response();
-		response();
 	}
 	
 	public void response(){
 		// TODO a mettre en cyclic behaviour (ou pas)
-		ACLMessage request = null;
-		while (request == null){
-			request = receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
-		}
-		String demande = request.getContent();
-		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
-		reply.addReceiver(request.getSender());
-		if (demande.equals("price")){
-			reply.setContent(String.valueOf(_fish.getPrice()));
-		}else if (demande.equals("type")){
-			reply.setContent(_fish.getType());
-		}else{
-			reply.setContent("NAN");
-		}
-		send(reply);
+		addBehaviour(new ResponseBehaviour(this));
 	}
 }
