@@ -10,8 +10,9 @@ public class SendBidBehaviour extends Behaviour {
 	private FishBuyerAgent _myAgent;
 	private AID _seller;
 
-	public SendBidBehaviour(FishBuyerAgent agent) {
+	public SendBidBehaviour(FishBuyerAgent agent, AID seller) {
 		this._myAgent = agent;
+		this._seller = seller;
 	}
 
 	@Override

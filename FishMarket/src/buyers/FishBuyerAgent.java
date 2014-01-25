@@ -122,7 +122,7 @@ public class FishBuyerAgent extends Agent{
     }
     
     public void bid(AID seller){
-    	this.addBehaviour(new SendBidBehaviour(this));
+    	this.addBehaviour(new SendBidBehaviour(this, seller));
     }
     
     public void manual(){

@@ -27,6 +27,9 @@ public class MyBuyerListener implements ActionListener {
 			}
 		}
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
+			// TODO mode automatique buyer
+		}
+		if(arg0.getActionCommand().equals("btnmanualbuy")){
 			try{
 				int indexAgent = _myGUI.getSelectedSeller();
 				
@@ -41,9 +44,6 @@ public class MyBuyerListener implements ActionListener {
 			catch(Exception ex){
 				JOptionPane.showMessageDialog(this._myGUI, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
-		}
-		if(arg0.getActionCommand().equals("btnmanualbuy")){
-			// TODO achat manuel
 		}
 
 	}
