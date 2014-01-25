@@ -37,7 +37,9 @@ public class ResponseBehaviour extends Behaviour {
 			System.out.println("autre");
 			reply.setContent("NAN");
 		}
-		this._myAgent.send(reply);
+		if (!demande.equals("bid")){
+			this._myAgent.send(reply);
+		}
 		System.out.println("envoi reponse");
 	}
 
