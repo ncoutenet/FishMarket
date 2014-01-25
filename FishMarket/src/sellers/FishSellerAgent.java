@@ -6,6 +6,7 @@ import java.util.List;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.ParallelBehaviour;
+import jade.core.behaviours.SequentialBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import pojos.Fish;
@@ -94,9 +95,18 @@ public class FishSellerAgent extends Agent{
 
 	public void registerToMarket(Fish f){
 		this._fish = f;
-		this.addBehaviour(new RegisterBehaviour(this));
+		//creation behaviour sequentiel
+		SequentialBehaviour seq = new SequentialBehaviour(this);
+		//ajout register a seq
+		seq.addSubBehaviour(new RegisterBehaviour(this));
+		//creation behaviour parallele
 		ParallelBehaviour para = new ParallelBehaviour();
+		//ajout behaviours a para
 		para.addSubBehaviour(new ResponseBehaviour(this));
 		para.addSubBehaviour(new ReceptBidBehaviour(this));
+		//ajout para a seq
+		seq.addSubBehaviour(para);
+		//lancement seq
+		addBehaviour(seq);
 	}
 }

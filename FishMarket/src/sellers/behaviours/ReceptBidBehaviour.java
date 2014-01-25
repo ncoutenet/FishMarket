@@ -9,6 +9,7 @@ public class ReceptBidBehaviour extends Behaviour {
 	private FishSellerAgent _myAgent;
 	
 	public ReceptBidBehaviour(FishSellerAgent myAgent){
+		System.out.println("recept");
 		_myAgent = myAgent;
 	}
 

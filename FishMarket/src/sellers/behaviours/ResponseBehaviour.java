@@ -9,6 +9,7 @@ public class ResponseBehaviour extends Behaviour {
 	private FishSellerAgent _myAgent;
 	
 	public ResponseBehaviour(FishSellerAgent agent){
+		System.out.println("response");
 		this._myAgent = agent;
 	}
 
