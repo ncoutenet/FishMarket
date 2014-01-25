@@ -24,7 +24,7 @@ public class FishSellerGui extends JFrame{
 	private JFormattedTextField _priceField;
 	private JTextField _nameFish;
 	private JFormattedTextField _timeOut;
-	
+	private JButton _btnAnnonce;
 	private Vector<Vector<String>> _buyers;
 	private JTable _buyTabler;
 	private MySellerListener _listener;
@@ -46,9 +46,9 @@ public class FishSellerGui extends JFrame{
 		header.add("Buyers");
 		_buyTabler = new JTable(_buyers, header);
 		_listener = new MySellerListener(this);
-		JButton btnAnnonce = new JButton("Announce");
-		btnAnnonce.addActionListener(_listener);
-		btnAnnonce.setActionCommand("btnPost");
+		_btnAnnonce = new JButton("Announce");
+		_btnAnnonce.addActionListener(_listener);
+		_btnAnnonce.setActionCommand("btnPost");
 		
 		JPanel p = new JPanel();
 		
@@ -62,7 +62,7 @@ public class FishSellerGui extends JFrame{
 		this.getContentPane().add(p, BorderLayout.NORTH);
 		
 		p = new JPanel();
-		p.add(btnAnnonce);
+		p.add(_btnAnnonce);
 		
 		getContentPane().add(p, BorderLayout.CENTER);
 		
@@ -82,6 +82,14 @@ public class FishSellerGui extends JFrame{
 		});
 	}
 	
+	public JButton getBtnAnnonce() {
+		return _btnAnnonce;
+	}
+
+	public void setBtnAnnonce(JButton btnAnnonce) {
+		this._btnAnnonce = btnAnnonce;
+	}
+
 	public FishSellerAgent getMyAgent() {
 		return _myAgent;
 	}

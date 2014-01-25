@@ -24,6 +24,7 @@ public class MySellerListener implements ActionListener {
 				
 				//mise à jour de l'agent et enregistrement au marché
 				_myGui.getMyAgent().registerToMarket(f);
+				_myGui.getBtnAnnonce().setEnabled(false);
 			}
 			catch(Exception ex){
 				JOptionPane.showMessageDialog(_myGui, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

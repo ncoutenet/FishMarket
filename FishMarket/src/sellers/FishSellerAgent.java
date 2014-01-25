@@ -14,11 +14,20 @@ import sellers.behaviours.ResponseBehaviour;
  */
 
 public class FishSellerAgent extends Agent{
-    private FishSellerGui _myGui;
-    private String _myName;
+	private FishSellerGui _myGui;
+	private String _myName;
 	private Fish _fish;
-    
-    public String getMyName() {
+	private boolean _sell;
+
+	public boolean isSell() {
+		return _sell;
+	}
+
+	public void setSell(boolean sell) {
+		this._sell = sell;
+	}
+
+	public String getMyName() {
 		return _myName;
 	}
 
@@ -29,31 +38,32 @@ public class FishSellerAgent extends Agent{
 	public Fish getFish() {
 		return _fish;
 	}
-	
+
 	public double getPrice(){
 		return this._fish.getPrice();
 	}
-	
+
 	public void increasePrice(){
 		_fish.setPrice(_fish.getPrice() * 6/5);
 	}
-	
+
 	public void decreasePrice(){
 		_fish.setPrice(_fish.getPrice() * 4/5);
 	}
-	
+
 	protected void setup(){
-        _myGui = new FishSellerGui(this);
-        _myGui.showGui();
-        _myName = this.getAID().getName();
-    }
-	
+		_myGui = new FishSellerGui(this);
+		_myGui.showGui();
+		_myName = this.getAID().getName();
+		_sell = false;
+	}
+
 	public void registerToMarket(Fish f){
 		this._fish = f;
 		this.addBehaviour(new RegisterBehaviour(this));
-		response();
+		response();	
 	}
-	
+
 	public void response(){
 		// TODO a mettre en cyclic behaviour (ou pas)
 		addBehaviour(new ResponseBehaviour(this));

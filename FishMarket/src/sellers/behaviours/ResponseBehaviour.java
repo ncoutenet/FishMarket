@@ -33,7 +33,7 @@ public class ResponseBehaviour extends Behaviour {
 
 	@Override
 	public boolean done() {
-		return false; //cyclic behaviour
+		return _myAgent.isSell(); //cyclic behaviour
 	}
 
 }
