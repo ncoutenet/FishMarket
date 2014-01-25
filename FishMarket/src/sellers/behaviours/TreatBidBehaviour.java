@@ -33,6 +33,7 @@ public class TreatBidBehaviour extends TickerBehaviour {
 			_seller.send(msg);
 			deregister();
 			_seller.stop();
+			_seller.sell();
 			break;
 		default:
 			_seller.increasePrice();

@@ -4,6 +4,8 @@ import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.ParallelBehaviour;
 import jade.core.behaviours.SequentialBehaviour;
+import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,5 +119,14 @@ public class FishSellerAgent extends Agent{
 	
 	public void stop(){
 		_treat.stop();
+	}
+	
+	public void sell(){
+		ACLMessage fish = new ACLMessage(ACLMessage.INFORM);
+		fish.addReceiver(_bidders.get(0));
+		fish.setContent("poisson");
+		this.send(fish);
+		ACLMessage money = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		System.out.println(money.getContent());
 	}
 }
