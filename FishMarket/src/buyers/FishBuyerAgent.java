@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pojos.Fish;
-
 import buyers.behaviours.SearchBehaviour;
+import buyers.behaviours.SendBidBehaviour;
 
 
 
@@ -65,7 +65,6 @@ public class FishBuyerAgent extends Agent{
         // TODO completer
     }
     
-	// TODO arreter la recherche dès qu'on a trouvé un vendeur
     public void setSellers(AID[] agents){
     	_endSearch = true;
     	this._sellers.clear();
@@ -119,7 +118,7 @@ public class FishBuyerAgent extends Agent{
     }
     
     public void bid(AID seller){
-    	// TODO bider ici
+    	this.addBehaviour(new SendBidBehaviour(this));
     }
     
     public void manual(){
