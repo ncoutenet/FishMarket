@@ -1,5 +1,7 @@
 package listeners;
 
+import jade.core.AID;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +36,8 @@ public class MyBuyerListener implements ActionListener {
 					JOptionPane.showMessageDialog(this._myGUI, "No seller selected!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				else{
-					// TODO bider le vendeur séléctionné
+					AID seller = this._myGUI.getMyAgent().getASeller(indexAgent);
+					// TODO envoyer un message de bid au vendeur
 				}
 				
 				this._myGUI.getMyAgent().setNewFish(type, price);

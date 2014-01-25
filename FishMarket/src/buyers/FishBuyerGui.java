@@ -116,8 +116,10 @@ public class FishBuyerGui extends JFrame{
 		// TODO récupérer les infos des vendeurs pour affichage
 		
 		for(int i = 0; i < sellers.size(); i++){
+			String name = sellers.get(i).getName().toString();
+			name = name.split("@")[0];
 			Vector<String> data = new Vector<String>();
-			data.add(0, sellers.get(i).getName().toString());
+			data.add(0, name);
 			if (isAuto()){
 				data.add(1, _fishType.getText());
 			} else{

@@ -75,7 +75,15 @@ public class FishBuyerAgent extends Agent{
     	this.findAnnounces();
     }
     
-    private void findAnnounces(){
+    public List<AID> getSellers() {
+		return _sellers;
+	}
+    
+    public AID getASeller(int index){
+    	return this._sellers.get(index);
+    }
+
+	private void findAnnounces(){
 		List<String> prices = new ArrayList<String>();
 		List<String> types = new ArrayList<String>();
     	for(int i = 0; i < _sellers.size(); i++){		
