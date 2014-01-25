@@ -118,6 +118,10 @@ public class FishBuyerAgent extends Agent{
     	// TODO comportement automatique
     }
     
+    public void bid(AID seller){
+    	// TODO bider ici
+    }
+    
     public void manual(){
     	// TODO comportement manuel
 		addBehaviour(new SearchBehaviour(this));

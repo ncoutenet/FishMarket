@@ -137,7 +137,7 @@ public class FishBuyerGui extends JFrame{
 		this.getContentPane().removeAll();
 		
 		this.getContentPane().add(_auto, BorderLayout.NORTH);
-		JButton btnBuy = new JButton("Buy");
+		JButton btnBuy = new JButton("Bid");
 		btnBuy.addActionListener(new MyBuyerListener(this));
 		btnBuy.setActionCommand("btnmanualbuy");
 		this._labSellerSelected = new JLabel();

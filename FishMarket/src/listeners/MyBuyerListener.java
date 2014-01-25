@@ -28,8 +28,6 @@ public class MyBuyerListener implements ActionListener {
 		}
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
 			try{
-				double price = this._myGUI.getMaxPrice();
-				String type = this._myGUI.getFishType();
 				int indexAgent = _myGUI.getSelectedSeller();
 				
 				if(indexAgent == -1){
@@ -37,11 +35,8 @@ public class MyBuyerListener implements ActionListener {
 				}
 				else{
 					AID seller = this._myGUI.getMyAgent().getASeller(indexAgent);
-					// TODO envoyer un message de bid au vendeur
+					this._myGUI.getMyAgent().bid(seller);
 				}
-				
-				this._myGUI.getMyAgent().setNewFish(type, price);
-				this._myGUI.getMyAgent().automatic();
 			}
 			catch(Exception ex){
 				JOptionPane.showMessageDialog(this._myGUI, "Invalid values: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
