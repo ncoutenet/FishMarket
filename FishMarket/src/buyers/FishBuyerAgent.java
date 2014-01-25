@@ -97,9 +97,11 @@ public class FishBuyerAgent extends Agent{
     	ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
 		msg.addReceiver(agent);
 		msg.setContent("type");
+		System.out.println("demande type");
 		send(msg);
 		
 		ACLMessage reply = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		System.out.println("retour type");
 		return reply.getContent();
     }
     
@@ -107,9 +109,11 @@ public class FishBuyerAgent extends Agent{
     	ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
 		msg.addReceiver(agent);
 		msg.setContent("price");
+		System.out.println("demande prix");
 		send(msg);
 		
 		ACLMessage reply = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+		System.out.println("retour prix");
 		return reply.getContent();
     }
     

@@ -10,7 +10,6 @@ import jade.core.behaviours.SequentialBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import pojos.Fish;
-import sellers.behaviours.ReceptBidBehaviour;
 import sellers.behaviours.RegisterBehaviour;
 import sellers.behaviours.ResponseBehaviour;
 
@@ -97,16 +96,8 @@ public class FishSellerAgent extends Agent{
 		this._fish = f;
 		//creation behaviour sequentiel
 		SequentialBehaviour seq = new SequentialBehaviour(this);
-		//ajout register a seq
 		seq.addSubBehaviour(new RegisterBehaviour(this));
-		//creation behaviour parallele
-		ParallelBehaviour para = new ParallelBehaviour();
-		//ajout behaviours a para
-		para.addSubBehaviour(new ResponseBehaviour(this));
-		para.addSubBehaviour(new ReceptBidBehaviour(this));
-		//ajout para a seq
-		seq.addSubBehaviour(para);
-		//lancement seq
+		seq.addSubBehaviour(new ResponseBehaviour(this));
 		addBehaviour(seq);
 	}
 }

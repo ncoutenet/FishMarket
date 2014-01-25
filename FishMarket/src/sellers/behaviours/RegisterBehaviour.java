@@ -3,6 +3,7 @@ package sellers.behaviours;
 import sellers.FishSellerAgent;
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
+import jade.core.behaviours.ParallelBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
