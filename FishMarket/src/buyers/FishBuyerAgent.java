@@ -126,8 +126,18 @@ public class FishBuyerAgent extends Agent{
     }
     
     public void buyFish(AID seller){
-		// TODO acheter le poisson
-    	System.out.println("achat poisson");
+    	ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+    	msg.addReceiver(seller);
+    	msg.setContent("paiement");
+    	send(msg);
+    	
+    	msg = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
+    	if(msg.getContent().equals("poisson")){
+    		System.out.println("Poisson reçu!");
+    	}
+    	else{
+    		System.out.println("erreur de réception du poisson");
+    	}
     }
     
     public void manual(){
