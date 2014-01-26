@@ -25,7 +25,7 @@ public class UpdateBuyerBehaviour extends Behaviour {
 				double price = Double.parseDouble(content.split("#")[1]);
 				List<AID> sellers = this._myAgent.getSellers();
 				int index = 0;
-				while(sellers.get(index).equals(msg.getSender())){
+				while(!sellers.get(index).equals(msg.getSender())){
 					index++;
 				}
 				this._myAgent.getGUI().updatePrice(price, index);
