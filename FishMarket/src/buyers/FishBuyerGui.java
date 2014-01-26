@@ -71,11 +71,15 @@ public class FishBuyerGui extends JFrame{
 		return this._sellTable.getSelectedRow();
 	}
 	
-	public void deleteASeller(int index){
-		this._sellers.remove(index);
-		this._sellTable.updateUI();
-		this._sellTable.clearSelection();
-		this.pack();
+	public void deleteASeller(AID agent){
+		int index = 0;
+		while((!this._myAgent.getSellers().get(index).equals(agent)) && (index < this._myAgent.getSellers().size())){
+			index++;
+		}
+			this._sellers.remove(index);
+			this._sellTable.updateUI();
+			this._sellTable.clearSelection();
+			this.pack();
 	}
 
 	public boolean isAuto(){
