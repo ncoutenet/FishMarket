@@ -140,6 +140,10 @@ public class FishBuyerAgent extends Agent{
     	}
     }
     
+    public void updatePrice(double price){
+    	this._myGui.updatePrice(price);
+    }
+    
     public void manual(){
     	// TODO comportement manuel
 		addBehaviour(new SearchBehaviour(this));
