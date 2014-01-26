@@ -28,6 +28,7 @@ public class FishSellerAgent extends Agent{
 	private boolean _sell;
 	private boolean _timeOut;
 	private List<AID> _bidders;
+	private List<AID> _potential;
 	private AID _market;
 	private TreatBidBehaviour _treat;
 	
@@ -112,6 +113,23 @@ public class FishSellerAgent extends Agent{
 		_sell = false;
 		_timeOut = false;
 		_bidders = new ArrayList<AID>();
+		_potential = new ArrayList<AID>();
+	}
+
+	public List<AID> getPotential() {
+		return _potential;
+	}
+
+	public void setPotential(List<AID> potential) {
+		this._potential = potential;
+	}
+
+	public AID getAPotential(int i) {
+		return _potential.get(i);
+	}
+
+	public void setAPotential(AID potential) {
+		this._potential.add(potential);
 	}
 
 	public void registerToMarket(Fish f){

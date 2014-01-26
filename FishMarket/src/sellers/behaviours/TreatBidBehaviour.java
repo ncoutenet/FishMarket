@@ -21,6 +21,7 @@ public class TreatBidBehaviour extends TickerBehaviour {
 		case 0:
 			_seller.decreasePrice();
 			System.out.println("0 bid");
+			sendNewPrice();
 			break;
 		case 1:
 			System.out.println("1 bid");
@@ -61,5 +62,16 @@ public class TreatBidBehaviour extends TickerBehaviour {
 		} catch (FIPAException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	private void sendNewPrice(){
+		for (int i=0; i<_seller.getPotential().size();i++){
+			ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+			msg.addReceiver(_seller.getAPotential(i));
+			String cont = new String("newPrice#");
+			cont += String.valueOf(_seller.getPrice());
+			msg.setContent(cont);
+			_seller.send(msg);
+		}
 	}
 }
