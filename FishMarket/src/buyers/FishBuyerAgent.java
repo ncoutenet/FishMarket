@@ -82,8 +82,6 @@ public class FishBuyerAgent extends Agent{
     	}else{
     		this.manual();
     	}
-        
-        // TODO completer
     }
     
     public void setSellers(AID[] agents){
@@ -164,7 +162,6 @@ public class FishBuyerAgent extends Agent{
     }
     
     public void manual(){
-    	// TODO comportement manuel
 		addBehaviour(new SearchBehaviour(this));
     }
 }

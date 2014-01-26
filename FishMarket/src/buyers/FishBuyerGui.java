@@ -70,6 +70,12 @@ public class FishBuyerGui extends JFrame{
 	public int getSelectedSeller(){
 		return this._sellTable.getSelectedRow();
 	}
+	
+	public void deleteASeller(int index){
+		this._sellers.remove(index);
+		this._sellTable.updateUI();
+		this.pack();
+	}
 
 	public boolean isAuto(){
 		return this._auto.isSelected();
@@ -167,7 +173,7 @@ public class FishBuyerGui extends JFrame{
 		
 		this._labSellerSelected.setText(text);
 	}
-	// TODO problème ici
+
 	public void updatePrice(double price, int index){
 		Vector<String> vect = this._sellers.get(index);
 		vect.set(2, String.valueOf(price));
