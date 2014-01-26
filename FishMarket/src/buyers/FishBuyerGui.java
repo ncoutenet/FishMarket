@@ -35,6 +35,7 @@ public class FishBuyerGui extends JFrame{
 	
 	public FishBuyerGui(FishBuyerAgent agent){
 		this._myAgent = agent;
+		this.setTitle(_myAgent.getName().toString().split("@")[0]);
 		
 		_auto = new JCheckBox("Automatic");
 		_auto.addActionListener(new MyBuyerListener(this));
