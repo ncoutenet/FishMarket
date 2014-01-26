@@ -51,8 +51,6 @@ public class TreatBidBehaviour extends TickerBehaviour {
 			msg.addReceiver(_seller.getABidder(i));
 			msg.setContent("NO");
 			_seller.send(msg);
-			msg.setContent(String.valueOf(_seller.getPrice()));
-			_seller.send(msg);
 		}
 	}
 
