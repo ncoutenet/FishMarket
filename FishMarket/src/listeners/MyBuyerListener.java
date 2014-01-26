@@ -27,9 +27,9 @@ public class MyBuyerListener implements ActionListener {
 			}
 		}
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
-			String fishType = this._myGUI.getFishType();
-			double maxPrice = this._myGUI.getMaxPrice();
-			this._myGUI.getMyAgent().automatic(fishType, maxPrice);
+			//String fishType = this._myGUI.getFishType();
+			//double maxPrice = this._myGUI.getMaxPrice();
+			this._myGUI.getMyAgent().automatic(/*fishType, maxPrice*/);
 		}
 		if(arg0.getActionCommand().equals("btnmanualbuy")){
 			try{
