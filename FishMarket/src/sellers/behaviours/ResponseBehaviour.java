@@ -17,9 +17,7 @@ public class ResponseBehaviour extends Behaviour {
 	@Override
 	public void action() {
 		ACLMessage request = null;
-		while (request == null){
-			request = this._myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
-		}
+		request = this._myAgent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 		System.out.println("reception demande");
 		String demande = request.getContent();
 		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
