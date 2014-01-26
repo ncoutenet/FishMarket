@@ -28,6 +28,7 @@ public class ResponseBehaviour extends Behaviour {
 			reply.setContent(this._myAgent.getFish().getType());
 		}else if (demande.equals("bid")){
 			_myAgent.setABidder(request.getSender());
+			_myAgent.getMyGui().updateGui();
 			System.out.println("Bid");
 		}else{
 			System.out.println("Other");

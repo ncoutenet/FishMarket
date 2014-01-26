@@ -169,4 +169,17 @@ public class FishSellerGui extends JFrame{
 	public void showGui(){
 		this.setVisible(true);
 	}
+	
+	public void updateGui(){
+		_buyers.clear();
+		for (int i=0; i<_myAgent.getBidders().size(); i++){
+			Vector<String> vec = new Vector<String>();
+			String name = _myAgent.getABidder(i).getName();
+			name = name.split("@")[0];
+			vec.add(0, name);
+			_buyers.add(vec);
+		}
+		_buyTabler.updateUI();
+		this.pack();
+	}
 }

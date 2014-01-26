@@ -30,6 +30,14 @@ public class FishSellerAgent extends Agent{
 	private List<AID> _bidders;
 	private AID _market;
 	private TreatBidBehaviour _treat;
+	
+	public FishSellerGui getMyGui() {
+		return _myGui;
+	}
+
+	public void setMyGui(FishSellerGui myGui) {
+		this._myGui = myGui;
+	}
 
 	public AID getMarket() {
 		return _market;
