@@ -128,15 +128,15 @@ public class FishBuyerAgent extends Agent{
     public void buyFish(AID seller){
     	ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
     	msg.addReceiver(seller);
-    	msg.setContent("paiement");
+    	msg.setContent("Money Received");
     	send(msg);
     	
     	msg = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-    	if(msg.getContent().equals("poisson")){
-    		System.out.println("Poisson reçu!");
+    	if(msg.getContent().equals("Fish Received")){
+    		System.out.println("Fish Received");
     	}
     	else{
-    		System.out.println("erreur de réception du poisson");
+    		System.out.println("Error! Fish has not been received!!!");
     	}
     }
     
