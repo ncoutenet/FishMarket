@@ -58,7 +58,12 @@ public class FishBuyerAgent extends Agent{
 
 	public void setMode(boolean auto){
 		this._autoMode = auto;
-		this._endSearch = true;
+		if (auto){
+			this._endSearch = true;
+		}else{
+			_endSearch = false;
+			addBehaviour(new SearchBehaviour(this));
+		}
 		this.stopUpdate();
 		this._myGui.deleteAllSellers();
 	}
