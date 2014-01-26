@@ -124,7 +124,7 @@ public class FishBuyerAgent extends Agent{
 		}
     	this._myGui.setSellers(_sellers, types, prices);
     	if(this.isAuto()){
-        	this.bid(null);
+        	//this.bid(null);
     	}
     }
     
@@ -161,6 +161,7 @@ public class FishBuyerAgent extends Agent{
     
     public void bid(AID seller){
     	if(seller == null){
+    		stopUpdate();
     		Vector<Vector<String>> sellers = this._myGui.getAllSellers();
     		int index = 0;
     		double min = Double.parseDouble(sellers.get(index).get(2));

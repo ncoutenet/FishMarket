@@ -32,6 +32,9 @@ public class UpdateBuyerBehaviour extends Behaviour {
 					if(index < _myAgent.getSellers().size()){
 						this._myAgent.getGUI().updatePrice(price, index);
 					}
+					if (price < _myAgent.getGUI().getMaxPrice().doubleValue()){
+						_myAgent.bid(null);
+					}
 				}
 			}
 			else{
