@@ -65,7 +65,6 @@ public class FishBuyerAgent extends Agent{
         _myGui.setVisible(true);
         this._sellers = new ArrayList<AID>();
         _endSearch = false;
-        _trackingPrices = true;
         
     	if(this.isAuto()){
     		this.automatic();
@@ -78,6 +77,7 @@ public class FishBuyerAgent extends Agent{
     
     public void setSellers(AID[] agents){
     	_endSearch = true;
+    	_trackingPrices = true;
     	this.addBehaviour(new UpdateBuyerBehaviour(this));
     	this._sellers.clear();
     	for(int i = 0; i < agents.length; i++){
@@ -150,10 +150,6 @@ public class FishBuyerAgent extends Agent{
     	else{
     		System.out.println("Error! Fish has not been received!!!");
     	}
-    }
-    
-    public void updatePrice(double price){
-    	this._myGui.updatePrice(price);
     }
     
     public void manual(){

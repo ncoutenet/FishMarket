@@ -166,13 +166,7 @@ public class FishBuyerGui extends JFrame{
 		
 		this._labSellerSelected.setText(text);
 	}
-	
-	public void updatePrice(double price){
-		int index = this._sellTable.getSelectedRow();
-		this._sellers.get(index).set(2, String.valueOf(price));
-		this._sellTable.clearSelection();
-	}
-	
+	// TODO problème ici
 	public void updatePrice(double price, int index){
 		this._sellers.get(index).set(2, String.valueOf(price));
 		this._sellTable.updateUI();
