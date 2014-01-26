@@ -114,8 +114,8 @@ public class FishSellerGui extends JFrame{
 		this._nameFish = nameFish;
 	}
 
-	public JFormattedTextField getTimeOut() {
-		return _timeOut;
+	public int getTimeOut() {
+		return Integer.parseInt(_timeOut.getValue().toString());
 	}
 
 	public void setTimeOut(JFormattedTextField timeOut) {

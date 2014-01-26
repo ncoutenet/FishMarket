@@ -138,7 +138,7 @@ public class FishSellerAgent extends Agent{
 		seq.addSubBehaviour(new RegisterBehaviour(this));
 		ParallelBehaviour para = new ParallelBehaviour();
 		para.addSubBehaviour(new ResponseBehaviour(this));
-		_treat = new TreatBidBehaviour(this, 5000);
+		_treat = new TreatBidBehaviour(this, this._myGui.getTimeOut()*1000);
 		para.addSubBehaviour(_treat);
 		seq.addSubBehaviour(para);
 		addBehaviour(seq);
