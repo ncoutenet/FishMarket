@@ -74,6 +74,7 @@ public class FishBuyerGui extends JFrame{
 	public void deleteASeller(int index){
 		this._sellers.remove(index);
 		this._sellTable.updateUI();
+		this._sellTable.clearSelection();
 		this.pack();
 	}
 
@@ -175,10 +176,16 @@ public class FishBuyerGui extends JFrame{
 	}
 
 	public void updatePrice(double price, int index){
-		Vector<String> vect = this._sellers.get(index);
-		vect.set(2, String.valueOf(price));
-		this._sellers.set(index, vect);
-		this._sellTable.updateUI();
+		System.out.println(index);
+		try{
+			Vector<String> vect = this._sellers.get(index);
+			vect.set(2, String.valueOf(price));
+			this._sellers.set(index, vect);
+			this._sellTable.updateUI();
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	public void updateSellerSelected(int index){

@@ -38,7 +38,7 @@ public class MyBuyerListener implements ActionListener {
 				}
 				else{
 					AID seller = this._myGUI.getMyAgent().getASeller(indexAgent);
-					this._myGUI.getMyAgent().stopUpdate();;
+					this._myGUI.getMyAgent().stopUpdate();
 					this._myGUI.getMyAgent().bid(seller);
 				}
 			}

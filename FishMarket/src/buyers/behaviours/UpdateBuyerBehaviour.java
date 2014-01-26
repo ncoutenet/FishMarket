@@ -21,7 +21,11 @@ public class UpdateBuyerBehaviour extends Behaviour {
 		ACLMessage msg = this._myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
 		if(msg != null){
 			String content = msg.getContent();
-			int index = this.getIndexSeller(msg);
+			List<AID> sellers = this._myAgent.getSellers();
+			int index = 0;
+			while(!sellers.get(index).equals(msg.getSender())){
+				index++;
+			}
 			
 			if(content.split("#").length > 1){
 				if(content.split("#")[0].equals("newPrice")){
@@ -36,15 +40,6 @@ public class UpdateBuyerBehaviour extends Behaviour {
 			}
 		}
 
-	}
-	
-	private int getIndexSeller(ACLMessage msg){
-		List<AID> sellers = this._myAgent.getSellers();
-		int index = 0;
-		while(!sellers.get(index).equals(msg.getSender())){
-			index++;
-		}
-		return index;
 	}
 
 	@Override
