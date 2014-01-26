@@ -115,7 +115,7 @@ public class FishBuyerGui extends JFrame{
 		for(int i = 0; i < sellers.size(); i++){
 			String name = sellers.get(i).getName().toString();
 			name = name.split("@")[0];
-			Vector<String> data = new Vector<String>();
+			Vector<String> data = new Vector<String>(3);
 			data.add(0, name);
 			if (isAuto()){
 				data.add(1, _fishType.getText());
@@ -168,7 +168,9 @@ public class FishBuyerGui extends JFrame{
 	}
 	// TODO problème ici
 	public void updatePrice(double price, int index){
-		this._sellers.get(index).set(2, String.valueOf(price));
+		Vector<String> vect = this._sellers.get(index);
+		vect.set(2, String.valueOf(price));
+		this._sellers.set(index, vect);
 		this._sellTable.updateUI();
 	}
 	

@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import buyers.FishBuyerGui;
-import buyers.behaviours.StopUpdateBehaviour;
 
 public class MyBuyerListener implements ActionListener {
 	private FishBuyerGui _myGUI;
@@ -39,7 +38,7 @@ public class MyBuyerListener implements ActionListener {
 				}
 				else{
 					AID seller = this._myGUI.getMyAgent().getASeller(indexAgent);
-					this._myGUI.getMyAgent().addBehaviour(new StopUpdateBehaviour(this._myGUI.getMyAgent()));
+					this._myGUI.getMyAgent().stopUpdate();;
 					this._myGUI.getMyAgent().bid(seller);
 				}
 			}

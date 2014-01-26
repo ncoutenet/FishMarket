@@ -22,14 +22,14 @@ public class FishBuyerAgent extends Agent{
     private Fish _fish;
     
     private List<AID> _sellers;
-    private boolean _trackingPrices;
+    private boolean _untrackingPrices;
     
-    public boolean isTrackingPrices() {
-		return _trackingPrices;
+    public boolean isUntrackingPrices() {
+		return _untrackingPrices;
 	}
 
-	public void setTrackingPrices(boolean trackingPrices) {
-		this._trackingPrices = trackingPrices;
+	public void setUntrackingPrices(boolean trackingPrices) {
+		this._untrackingPrices = trackingPrices;
 	}
 
 	public Fish getFish() {
@@ -42,6 +42,17 @@ public class FishBuyerAgent extends Agent{
 	
 	public void setNewFish(String type, double price){
 		this._fish = new Fish(type, price);
+	}
+	
+	public void stopUpdate(){
+		this.setUntrackingPrices(true);
+		ACLMessage stopUpdate = new ACLMessage(ACLMessage.REQUEST);
+		List<AID> senders = this.getSellers();
+		for(int i = 0; i < senders.size(); i++){
+			stopUpdate.addReceiver(senders.get(i));
+			stopUpdate.setContent("stopUpdate");
+		}
+		this.send(stopUpdate);
 	}
 
 	public void setMode(boolean auto){
@@ -77,13 +88,13 @@ public class FishBuyerAgent extends Agent{
     
     public void setSellers(AID[] agents){
     	_endSearch = true;
-    	_trackingPrices = true;
-    	this.addBehaviour(new UpdateBuyerBehaviour(this));
+    	_untrackingPrices = false;
     	this._sellers.clear();
     	for(int i = 0; i < agents.length; i++){
     		this._sellers.add(agents[i]);
     	}
     	this.findAnnounces();
+    	this.addBehaviour(new UpdateBuyerBehaviour(this));
     }
     
     public List<AID> getSellers() {
