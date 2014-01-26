@@ -32,11 +32,14 @@ public class ResponseBehaviour extends Behaviour {
 				_myAgent.setABidder(request.getSender());
 				_myAgent.getMyGui().updateGui();
 				System.out.println("Bid");
+			}else if (demande.equals("stopUpdate")){
+				_myAgent.dePotential(request.getSender());
+				System.out.println("Deregister");
 			}else{
 				System.out.println("Other");
 				reply.setContent("NAN");
 			}
-			if (!demande.equals("bid")){
+			if (!demande.equals("bid") && !demande.equals("stopUpdate")){
 				this._myAgent.send(reply);
 				System.out.println("Send answer");
 			}

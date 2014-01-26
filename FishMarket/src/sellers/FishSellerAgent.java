@@ -161,4 +161,16 @@ public class FishSellerAgent extends Agent{
 			System.out.println("Error receiving money");
 		}
 	}
+	
+	public void dePotential(AID pot){
+		int i=0;
+		while (i<_potential.size() && !getAPotential(i).equals(pot)){
+			i++;
+		}
+		if (i == _potential.size()){
+			System.out.println("Buyer not recognized");
+		}else{
+			_potential.remove(i);
+		}
+	}
 }
