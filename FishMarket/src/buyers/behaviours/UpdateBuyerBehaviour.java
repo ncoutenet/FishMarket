@@ -36,7 +36,7 @@ public class UpdateBuyerBehaviour extends Behaviour {
 
 	@Override
 	public boolean done() {
-		return this._myAgent.isTrackingPrices();
+		return !this._myAgent.isTrackingPrices();
 	}
 
 }

@@ -64,7 +64,7 @@ public class FishBuyerAgent extends Agent{
         _myGui.setVisible(true);
         this._sellers = new ArrayList<AID>();
         _endSearch = false;
-        _trackingPrices = false;
+        _trackingPrices = true;
         
     	if(this.isAuto()){
     		this.automatic();

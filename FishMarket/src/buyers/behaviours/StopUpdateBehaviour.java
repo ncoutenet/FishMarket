@@ -25,6 +25,7 @@ public class StopUpdateBehaviour extends Behaviour {
 			stopUpdate.setContent("stopUpdate");
 		}
 		this._myAgent.send(stopUpdate);
+		this._myAgent.setTrackingPrices(false);
 	}
 
 	@Override
