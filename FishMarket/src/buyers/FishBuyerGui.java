@@ -76,10 +76,11 @@ public class FishBuyerGui extends JFrame{
 		while((!this._myAgent.getSellers().get(index).equals(agent)) && (index < this._myAgent.getSellers().size())){
 			index++;
 		}
-			this._sellers.remove(index);
-			this._sellTable.updateUI();
-			this._sellTable.clearSelection();
-			this.pack();
+		this._myAgent.deleteAnAgent(index);
+		this._sellers.remove(index);
+		this._sellTable.updateUI();
+		this._sellTable.clearSelection();
+		this.pack();
 	}
 
 	public boolean isAuto(){

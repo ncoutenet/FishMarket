@@ -99,6 +99,10 @@ public class FishBuyerAgent extends Agent{
 		return _sellers;
 	}
     
+    public void deleteAnAgent(int index){
+    	this._sellers.remove(index);
+    }
+    
     public AID getASeller(int index){
     	return this._sellers.get(index);
     }
