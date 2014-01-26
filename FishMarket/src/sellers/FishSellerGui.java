@@ -40,6 +40,7 @@ public class FishSellerGui extends JFrame{
 		_priceField = new JFormattedTextField(myFormatPrice);
 		_nameFish = new JTextField();
 		_timeOut =  new JFormattedTextField(myFormatTime);
+		this.setTitle(_myAgent.getName().toString().split("@")[0]);
 		
 		_buyers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();

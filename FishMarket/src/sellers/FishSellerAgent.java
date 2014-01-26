@@ -10,6 +10,8 @@ import jade.lang.acl.MessageTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
+
 import pojos.Fish;
 import sellers.behaviours.RegisterBehaviour;
 import sellers.behaviours.ResponseBehaviour;
@@ -149,6 +151,8 @@ public class FishSellerAgent extends Agent{
 	}
 	
 	public void sell(){
+		dePotential(_bidders.get(0));
+		sendStopTracking();
 		ACLMessage fish = new ACLMessage(ACLMessage.INFORM);
 		fish.addReceiver(_bidders.get(0));
 		fish.setContent("Fish Received");
@@ -170,6 +174,17 @@ public class FishSellerAgent extends Agent{
 			System.out.println("Buyer not recognized");
 		}else{
 			_potential.remove(i);
+		}
+	}
+	
+	private void sendStopTracking(){
+		int i=0;
+		ACLMessage sst = new ACLMessage(ACLMessage.INFORM);
+		while (i<_potential.size()){
+			sst.addReceiver(_potential.get(i));
+			sst.setContent("stopTracking");
+			this.send(sst);
+			i++;
 		}
 	}
 }
