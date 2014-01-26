@@ -11,6 +11,7 @@ import java.util.List;
 import pojos.Fish;
 import buyers.behaviours.SearchBehaviour;
 import buyers.behaviours.SendBidBehaviour;
+import buyers.behaviours.UpdateBuyerBehaviour;
 
 
 
@@ -77,6 +78,7 @@ public class FishBuyerAgent extends Agent{
     
     public void setSellers(AID[] agents){
     	_endSearch = true;
+    	this.addBehaviour(new UpdateBuyerBehaviour(this));
     	this._sellers.clear();
     	for(int i = 0; i < agents.length; i++){
     		this._sellers.add(agents[i]);
