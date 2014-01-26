@@ -49,7 +49,6 @@ public class FishBuyerGui extends JFrame{
 		header.add("Price");
 		
 		this._sellTable = new JTable(this._sellers, header);
-
 		if(_auto.isSelected()){
 			this.constructAutomaticMode();
 		} else{
@@ -71,6 +70,10 @@ public class FishBuyerGui extends JFrame{
 		return this._sellTable.getSelectedRow();
 	}
 	
+	public Vector<Vector<String>> getAllSellers(){
+		return this._sellers;
+	}
+	
 	public void deleteASeller(AID agent){
 		int index = 0;
 		while((!this._myAgent.getSellers().get(index).equals(agent)) && (index < this._myAgent.getSellers().size())){
@@ -78,6 +81,14 @@ public class FishBuyerGui extends JFrame{
 		}
 		this._myAgent.deleteAnAgent(index);
 		this._sellers.remove(index);
+		this._sellTable.updateUI();
+		this._sellTable.clearSelection();
+		this.pack();
+	}
+	
+	public void deleteAllSellers(){
+		this._myAgent.deleteAllAgents();
+		this._sellers.clear();
 		this._sellTable.updateUI();
 		this._sellTable.clearSelection();
 		this.pack();

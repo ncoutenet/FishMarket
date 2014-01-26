@@ -7,6 +7,7 @@ import jade.lang.acl.MessageTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import pojos.Fish;
 import buyers.behaviours.SearchBehaviour;
@@ -57,6 +58,9 @@ public class FishBuyerAgent extends Agent{
 
 	public void setMode(boolean auto){
     	this._autoMode = auto;
+    		this._endSearch = true;
+    		this.stopUpdate();
+    		this._myGui.deleteAllSellers();
     }
     
     public boolean isAuto() {
@@ -76,13 +80,14 @@ public class FishBuyerAgent extends Agent{
         _myGui.setVisible(true);
         this._sellers = new ArrayList<AID>();
         _endSearch = false;
+        this._autoMode = this._myGui.isAuto();
         
     	if(!this.isAuto()){
     		this.manual();
     	}
     }
-    
-    public void setSellers(AID[] agents){
+
+	public void setSellers(AID[] agents){
     	_endSearch = true;
     	_untrackingPrices = false;
     	this._sellers.clear();
@@ -101,6 +106,10 @@ public class FishBuyerAgent extends Agent{
     	this._sellers.remove(index);
     }
     
+    public void deleteAllAgents(){
+    	this._sellers.clear();
+    }
+    
     public AID getASeller(int index){
     	return this._sellers.get(index);
     }
@@ -114,6 +123,9 @@ public class FishBuyerAgent extends Agent{
 			prices.add(findPrice(seller));
 		}
     	this._myGui.setSellers(_sellers, types, prices);
+    	if(this.isAuto()){
+        	this.bid(null);
+    	}
     }
     
     private String findType(AID agent){
@@ -141,12 +153,31 @@ public class FishBuyerAgent extends Agent{
     }
     
     public void automatic(String type, double maxPrice){
+    	this._endSearch = false;
+    	this._untrackingPrices = false;
     	// TODO comportement automatique
     	this.addBehaviour(new SearchBehaviour(this));
     }
     
     public void bid(AID seller){
-    	this.addBehaviour(new SendBidBehaviour(this, seller));
+    	if(seller == null){
+    		Vector<Vector<String>> sellers = this._myGui.getAllSellers();
+    		int index = 0;
+    		double min = Double.parseDouble(sellers.get(index).get(2));
+    		for(int i = 1; i < sellers.size(); i++){
+    			double price = Double.parseDouble(sellers.get(i).get(2));
+    			if(min > price){
+    				min = price;
+    				index = i;
+    			}
+    		}
+    		if(this._myGui.getMaxPrice() >= min){
+    			seller = this.getASeller(index);
+    			this.addBehaviour(new SendBidBehaviour(this, seller));
+    		}
+    	}else{
+    		this.addBehaviour(new SendBidBehaviour(this, seller));
+    	}
     }
     
     public void buyFish(AID seller){
@@ -165,6 +196,8 @@ public class FishBuyerAgent extends Agent{
     }
     
     public void manual(){
+    	this._endSearch = false;
+    	this._untrackingPrices = false;
 		addBehaviour(new SearchBehaviour(this));
     }
 }
