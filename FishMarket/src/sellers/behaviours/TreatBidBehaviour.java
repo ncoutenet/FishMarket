@@ -13,12 +13,10 @@ public class TreatBidBehaviour extends TickerBehaviour {
 	public TreatBidBehaviour(FishSellerAgent a, long period) {
 		super(a, period);
 		_seller = a;
-		System.out.println("Miaou");
 	}
 
 	@Override
 	protected void onTick() {
-		System.out.println(_seller.getBidders().size());
 		switch (_seller.getBidders().size()){
 		case 0:
 			_seller.decreasePrice();

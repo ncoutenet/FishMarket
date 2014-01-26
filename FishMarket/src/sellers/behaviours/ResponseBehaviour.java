@@ -18,7 +18,7 @@ public class ResponseBehaviour extends Behaviour {
 	public void action() {
 		ACLMessage request = null;
 		request = this._myAgent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
-		System.out.println("reception demande");
+		System.out.println("ask receive");
 		String demande = request.getContent();
 		ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
 		reply.addReceiver(request.getSender());
@@ -32,12 +32,12 @@ public class ResponseBehaviour extends Behaviour {
 			_myAgent.setABidder(request.getSender());
 			System.out.println("bid");
 		}else{
-			System.out.println("autre");
+			System.out.println("other");
 			reply.setContent("NAN");
 		}
 		if (!demande.equals("bid")){
 			this._myAgent.send(reply);
-			System.out.println("envoi reponse");
+			System.out.println("send answer");
 		}
 	}
 

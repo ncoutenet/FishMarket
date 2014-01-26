@@ -124,8 +124,9 @@ public class FishSellerAgent extends Agent{
 	public void sell(){
 		ACLMessage fish = new ACLMessage(ACLMessage.INFORM);
 		fish.addReceiver(_bidders.get(0));
-		fish.setContent("poisson");
+		fish.setContent("Fish Received");
 		this.send(fish);
+		System.out.println("Fish sent");
 		ACLMessage money = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
 		System.out.println(money.getContent());
 	}
