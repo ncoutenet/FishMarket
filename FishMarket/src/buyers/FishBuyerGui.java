@@ -40,7 +40,7 @@ public class FishBuyerGui extends JFrame{
 		_auto = new JCheckBox("Automatic");
 		_auto.addActionListener(new MyBuyerListener(this));
 		_auto.setActionCommand("autobuy");
-		_auto.setSelected(false);
+		_auto.setSelected(true);
 		
 		this._sellers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();

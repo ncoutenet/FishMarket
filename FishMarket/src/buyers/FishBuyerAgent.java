@@ -77,9 +77,7 @@ public class FishBuyerAgent extends Agent{
         this._sellers = new ArrayList<AID>();
         _endSearch = false;
         
-    	if(this.isAuto()){
-    		this.automatic();
-    	}else{
+    	if(!this.isAuto()){
     		this.manual();
     	}
     }
@@ -142,8 +140,9 @@ public class FishBuyerAgent extends Agent{
 		return reply.getContent();
     }
     
-    public void automatic(){
+    public void automatic(String type, double maxPrice){
     	// TODO comportement automatique
+    	this.addBehaviour(new SearchBehaviour(this));
     }
     
     public void bid(AID seller){
