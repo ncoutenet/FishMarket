@@ -34,7 +34,7 @@ public class ResponseBehaviour extends Behaviour {
 				System.out.println("Bid");
 			}else if (demande.equals("stopUpdate")){
 				_myAgent.dePotential(request.getSender());
-				System.out.println("Deregister");
+				System.out.println("DeregisterUpdate");
 			}else{
 				System.out.println("Other");
 				reply.setContent("NAN");
