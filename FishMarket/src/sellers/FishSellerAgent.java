@@ -151,7 +151,7 @@ public class FishSellerAgent extends Agent{
 	}
 	
 	public void sell(){
-		dePotential(_bidders.get(0));
+		//dePotential(_bidders.get(0));
 		sendStopTracking();
 		ACLMessage fish = new ACLMessage(ACLMessage.INFORM);
 		fish.addReceiver(_bidders.get(0));
