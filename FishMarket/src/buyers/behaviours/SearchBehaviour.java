@@ -13,6 +13,7 @@ import java.util.Iterator;
 
 import buyers.FishBuyerAgent;
 
+@SuppressWarnings("serial")
 public class SearchBehaviour extends Behaviour {
 	private FishBuyerAgent _myAgent;
 
@@ -64,7 +65,7 @@ public class SearchBehaviour extends Behaviour {
 					AID provider = dfd.getName();
 					// The same agent may provide several services; we are only interested
 					// in the monger one
-					Iterator it = dfd.getAllServices();
+					Iterator<?> it = dfd.getAllServices();
 					while (it.hasNext()) {
 						ServiceDescription sd = (ServiceDescription) it.next();
 						if (sd.getType().equals("Monger")) {

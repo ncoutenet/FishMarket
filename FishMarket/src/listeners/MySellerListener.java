@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import pojos.Fish;
-
 import sellers.FishSellerGui;
 
 public class MySellerListener implements ActionListener {
@@ -15,13 +14,13 @@ public class MySellerListener implements ActionListener {
 	public MySellerListener (FishSellerGui myGui){
 		_myGui = myGui;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(arg0.getActionCommand().equals("btnPost")){ 
 			try{
 				Fish f = new Fish(_myGui.getNameFish().getText(), Double.parseDouble(_myGui.getPriceField().getValue().toString()));
-				
+
 				//mise à jour de l'agent et enregistrement au marché
 				_myGui.getMyAgent().registerToMarket(f);
 				_myGui.getBtnAnnonce().setEnabled(false);

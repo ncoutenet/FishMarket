@@ -16,6 +16,7 @@ import buyers.behaviours.UpdateBuyerBehaviour;
 
 
 
+@SuppressWarnings("serial")
 public class FishBuyerAgent extends Agent{
 	private FishBuyerGui _myGui;
 	private boolean _autoMode;
@@ -144,11 +145,11 @@ public class FishBuyerAgent extends Agent{
 		ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
 		msg.addReceiver(agent);
 		msg.setContent("type");
-		System.out.println("demande type");
+		System.out.println("Ask for type");
 		send(msg);
 
 		ACLMessage reply = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-		System.out.println("retour type");
+		System.out.println("Type received");
 		return reply.getContent();
 	}
 
@@ -156,11 +157,11 @@ public class FishBuyerAgent extends Agent{
 		ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
 		msg.addReceiver(agent);
 		msg.setContent("price");
-		System.out.println("demande prix");
+		System.out.println("Ask for price");
 		send(msg);
 
 		ACLMessage reply = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-		System.out.println("retour prix");
+		System.out.println("Price received");
 		return reply.getContent();
 	}
 

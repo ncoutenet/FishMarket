@@ -1,10 +1,11 @@
 package sellers.behaviours;
 
-import sellers.FishSellerAgent;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import sellers.FishSellerAgent;
 
+@SuppressWarnings("serial")
 public class ResponseBehaviour extends Behaviour {
 	private FishSellerAgent _myAgent;
 
@@ -17,7 +18,7 @@ public class ResponseBehaviour extends Behaviour {
 		ACLMessage request = null;
 		request = this._myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 		if (request != null){
-			System.out.println("Ask receive");
+			System.out.println("Ask received");
 			String demande = request.getContent();
 			ACLMessage reply = new ACLMessage(ACLMessage.INFORM);
 			reply.addReceiver(request.getSender());

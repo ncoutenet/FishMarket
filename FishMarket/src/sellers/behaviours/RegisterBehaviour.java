@@ -10,6 +10,7 @@ import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import sellers.FishSellerAgent;
 
+@SuppressWarnings("serial")
 public class RegisterBehaviour extends Behaviour {
 	private FishSellerAgent _seller;
 
@@ -25,7 +26,6 @@ public class RegisterBehaviour extends Behaviour {
 		sd.setType("fish-market");
 		dfd.addServices(sd);
 
-		//recherche du dfMarket
 		AID agent = null;
 
 		DFAgentDescription[] result = null;
@@ -44,7 +44,6 @@ public class RegisterBehaviour extends Behaviour {
 		agent = result[0].getName();
 		_seller.setMarket(agent);
 
-		//creation du dfd et sd pour enregistrement service
 		DFAgentDescription dfd2 = new DFAgentDescription();
 		ServiceDescription sd2 = new ServiceDescription();
 		sd2.setType("Monger");
@@ -54,7 +53,6 @@ public class RegisterBehaviour extends Behaviour {
 		sd2.addProperties(new Property("fish", _seller.getFish().getType()));
 		dfd2.addServices(sd2);
 
-		//enregistrement service
 		try {
 			DFService.register(_seller, agent, dfd2);
 		} catch (FIPAException e) {

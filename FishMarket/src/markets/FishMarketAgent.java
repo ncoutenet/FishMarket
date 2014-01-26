@@ -8,6 +8,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 
+@SuppressWarnings("serial")
 public class FishMarketAgent extends jade.domain.df{
 
 	protected void setup(){
@@ -16,14 +17,10 @@ public class FishMarketAgent extends jade.domain.df{
 
 			AID parentName = getDefaultDF(); 
 
-			//Execute the setup of jade.domain.df which includes all the default behaviours of a df 
-			//(i.e. register, unregister,modify, and search).
 			super.setup();
-
-			//Use this method to modify the current description of this df. 
+ 
 			setDescriptionOfThisDF(getDescription());
 
-			//Show the default Gui of a df.
 			super.showGui();
 
 			DFService.register(this,parentName,getDescription());
@@ -40,9 +37,7 @@ public class FishMarketAgent extends jade.domain.df{
 		ServiceDescription sd = new ServiceDescription();
 		sd.setType("fish-market");
 		sd.setName("FishMarket");
-		// Agents that want to use this service need to "know" the weather-forecast-ontology
 		sd.addOntologies("fish-market-ontology");
-		// Agents that want to use this service need to "speak" the FIPA-SL language
 		sd.addLanguages(FIPANames.ContentLanguage.FIPA_SL);
 		sd.addProperties(new Property("Seller", "Fish"));
 		dfd.addServices(sd);

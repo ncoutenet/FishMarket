@@ -62,7 +62,7 @@ public class TreatBidBehaviour extends TickerBehaviour {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void sendNewPrice(){
 		for (int i=0; i<_seller.getPotential().size();i++){
 			ACLMessage msg = new ACLMessage(ACLMessage.INFORM);

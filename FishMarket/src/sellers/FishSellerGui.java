@@ -18,9 +18,10 @@ import javax.swing.JTextField;
 import listeners.MySellerListener;
 
 
+@SuppressWarnings("serial")
 public class FishSellerGui extends JFrame{
 	private FishSellerAgent _myAgent;
-	
+
 	private JFormattedTextField _priceField;
 	private JTextField _nameFish;
 	private JFormattedTextField _timeOut;
@@ -28,7 +29,7 @@ public class FishSellerGui extends JFrame{
 	private Vector<Vector<String>> _buyers;
 	private JTable _buyTabler;
 	private MySellerListener _listener;
-	
+
 	public FishSellerGui(FishSellerAgent agent){
 		NumberFormat myFormatPrice;
 		myFormatPrice = NumberFormat.getNumberInstance();
@@ -41,7 +42,7 @@ public class FishSellerGui extends JFrame{
 		_nameFish = new JTextField();
 		_timeOut =  new JFormattedTextField(myFormatTime);
 		this.setTitle(_myAgent.getName().toString().split("@")[0]);
-		
+
 		_buyers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();
 		header.add("Buyers");
@@ -50,9 +51,9 @@ public class FishSellerGui extends JFrame{
 		_btnAnnonce = new JButton("Announce");
 		_btnAnnonce.addActionListener(_listener);
 		_btnAnnonce.setActionCommand("btnPost");
-		
+
 		JPanel p = new JPanel();
-		
+
 		p.setLayout(new GridLayout(3, 2));
 		p.add(new JLabel("Type of fish: "));
 		p.add(_nameFish);
@@ -61,28 +62,27 @@ public class FishSellerGui extends JFrame{
 		p.add(new JLabel("Time out: "));
 		p.add(_timeOut);
 		this.getContentPane().add(p, BorderLayout.NORTH);
-		
+
 		p = new JPanel();
 		p.add(_btnAnnonce);
-		
+
 		getContentPane().add(p, BorderLayout.CENTER);
-		
+
 		p = new JPanel();
 		p.setLayout(new BorderLayout());
 		p.add(_buyTabler.getTableHeader(), BorderLayout.NORTH);
 		p.add(_buyTabler, BorderLayout.CENTER);
 		getContentPane().add(p, BorderLayout.SOUTH);
-		
+
 		this.pack();
-		
-		//Quitte l'agent à la fermeture de la fenêtre
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				_myAgent.doDelete();
 			}
 		});
 	}
-	
+
 	public JButton getBtnAnnonce() {
 		return _btnAnnonce;
 	}
@@ -152,11 +152,11 @@ public class FishSellerGui extends JFrame{
 		vect.add(buyer);
 		this._buyers.add(vect);
 	}
-	
+
 	public void initBuyers(){
 		this._buyers.clear();
 	}
-	
+
 	public void removeBuyer(String buyer){
 		int i = 0;
 		while( i < this._buyers.size()){
@@ -166,11 +166,11 @@ public class FishSellerGui extends JFrame{
 			i++;
 		}
 	}
-	
+
 	public void showGui(){
 		this.setVisible(true);
 	}
-	
+
 	public void updateGui(){
 		_buyers.clear();
 		for (int i=0; i<_myAgent.getBidders().size(); i++){

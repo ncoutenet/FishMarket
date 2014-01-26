@@ -27,14 +27,12 @@ public class MyBuyerListener implements ActionListener {
 			}
 		}
 		if(arg0.getActionCommand().equals("btnsubmitbuyer")){
-			//String fishType = this._myGUI.getFishType();
-			//double maxPrice = this._myGUI.getMaxPrice();
-			this._myGUI.getMyAgent().automatic(/*fishType, maxPrice*/);
+			this._myGUI.getMyAgent().automatic();
 		}
 		if(arg0.getActionCommand().equals("btnmanualbuy")){
 			try{
 				int indexAgent = _myGUI.getSelectedSeller();
-				
+
 				if(indexAgent == -1){
 					JOptionPane.showMessageDialog(this._myGUI, "No seller selected!", "Error", JOptionPane.ERROR_MESSAGE);
 				}

@@ -6,6 +6,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import buyers.FishBuyerAgent;
 
+@SuppressWarnings("serial")
 public class SendBidBehaviour extends Behaviour {
 	private FishBuyerAgent _myAgent;
 	private AID _seller;
@@ -21,7 +22,7 @@ public class SendBidBehaviour extends Behaviour {
 		bid.addReceiver(this._seller);
 		bid.setContent("bid");
 		this._myAgent.send(bid);
-		
+
 		ACLMessage reply = this._myAgent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
 		String response = reply.getContent();
 		if(response.equals("YES")){

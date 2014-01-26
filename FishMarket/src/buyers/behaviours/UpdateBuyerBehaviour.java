@@ -1,13 +1,11 @@
 package buyers.behaviours;
 
-import java.util.List;
-
-import buyers.FishBuyerAgent;
-import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import buyers.FishBuyerAgent;
 
+@SuppressWarnings("serial")
 public class UpdateBuyerBehaviour extends Behaviour {
 	private FishBuyerAgent _myAgent;
 
@@ -25,7 +23,7 @@ public class UpdateBuyerBehaviour extends Behaviour {
 			while((index < this._myAgent.getSellers().size()) && (!this._myAgent.getSellers().get(index).equals(msg.getSender()))){
 				index++;
 			}
-			
+
 			if(content.split("#").length > 1){
 				if(content.split("#")[0].equals("newPrice")){
 					double price = Double.parseDouble(content.split("#")[1]);

@@ -10,19 +10,12 @@ import jade.lang.acl.MessageTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
-
 import pojos.Fish;
 import sellers.behaviours.RegisterBehaviour;
 import sellers.behaviours.ResponseBehaviour;
 import sellers.behaviours.TreatBidBehaviour;
 
-/*
- * Faire les annonces sur le marché
- * Les Acheteurs disent aux marché quel est le vendeur qu'ils écoutent
- * Le marché ne sert que d'interface 
- */
-
+@SuppressWarnings("serial")
 public class FishSellerAgent extends Agent{
 	private FishSellerGui _myGui;
 	private String _myName;
@@ -33,7 +26,7 @@ public class FishSellerAgent extends Agent{
 	private List<AID> _potential;
 	private AID _market;
 	private TreatBidBehaviour _treat;
-	
+
 	public FishSellerGui getMyGui() {
 		return _myGui;
 	}
@@ -57,7 +50,7 @@ public class FishSellerAgent extends Agent{
 	public void setBidders(List<AID> bidders) {
 		this._bidders = bidders;
 	}
-	
+
 	public AID getABidder(int i) {
 		return _bidders.get(i);
 	}
@@ -145,13 +138,12 @@ public class FishSellerAgent extends Agent{
 		seq.addSubBehaviour(para);
 		addBehaviour(seq);
 	}
-	
+
 	public void stop(){
 		_treat.stop();
 	}
-	
+
 	public void sell(){
-		//dePotential(_bidders.get(0));
 		sendStopTracking();
 		ACLMessage fish = new ACLMessage(ACLMessage.INFORM);
 		fish.addReceiver(_bidders.get(0));
@@ -164,7 +156,7 @@ public class FishSellerAgent extends Agent{
 			System.out.println("Error receiving money");
 		}
 	}
-	
+
 	public void dePotential(AID pot){
 		int i=0;
 		while (i<_potential.size() && !getAPotential(i).equals(pot)){
@@ -176,7 +168,7 @@ public class FishSellerAgent extends Agent{
 			_potential.remove(i);
 		}
 	}
-	
+
 	private void sendStopTracking(){
 		int i=0;
 		ACLMessage sst = new ACLMessage(ACLMessage.INFORM);

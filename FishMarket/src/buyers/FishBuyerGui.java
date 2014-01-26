@@ -23,38 +23,39 @@ import javax.swing.ListSelectionModel;
 import listeners.MyBuyerListener;
 import listeners.MyTableListener;
 
+@SuppressWarnings("serial")
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
 	private JFormattedTextField _maxPrice;
 	private JTextField _fishType;
 	private JCheckBox _auto;
 	private JLabel _labSellerSelected;
-	
+
 	private JTable _sellTable;
 	private Vector<Vector<String>> _sellers; 
-	
+
 	public FishBuyerGui(FishBuyerAgent agent){
 		this._myAgent = agent;
 		this.setTitle(_myAgent.getName().toString().split("@")[0]);
-		
+
 		_auto = new JCheckBox("Automatic");
 		_auto.addActionListener(new MyBuyerListener(this));
 		_auto.setActionCommand("autobuy");
 		_auto.setSelected(true);
-		
+
 		this._sellers = new Vector<Vector<String>>();
 		Vector<String> header = new Vector<String>();
 		header.add("Seller");
 		header.add("Fish");
 		header.add("Price");
-		
+
 		this._sellTable = new JTable(this._sellers, header);
 		if(_auto.isSelected()){
 			this.constructAutomaticMode();
 		} else{
 			this.constructManualMode();
 		}
-		
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				_myAgent.doDelete();
@@ -65,15 +66,15 @@ public class FishBuyerGui extends JFrame{
 	public FishBuyerAgent getMyAgent() {
 		return _myAgent;
 	}
-	
+
 	public int getSelectedSeller(){
 		return this._sellTable.getSelectedRow();
 	}
-	
+
 	public Vector<Vector<String>> getAllSellers(){
 		return this._sellers;
 	}
-	
+
 	public void deleteASeller(AID agent){
 		int index = 0;
 		while((!this._myAgent.getSellers().get(index).equals(agent)) && (index < this._myAgent.getSellers().size())){
@@ -85,7 +86,7 @@ public class FishBuyerGui extends JFrame{
 		this._sellTable.clearSelection();
 		this.pack();
 	}
-	
+
 	public void deleteAllSellers(){
 		this._myAgent.deleteAllAgents();
 		this._sellers.clear();
@@ -97,10 +98,10 @@ public class FishBuyerGui extends JFrame{
 	public boolean isAuto(){
 		return this._auto.isSelected();
 	}
-	
+
 	public void constructAutomaticMode(){
 		this.getContentPane().removeAll();
-		
+
 		NumberFormat myFormat;
 		myFormat = NumberFormat.getNumberInstance();
 		myFormat.setMaximumFractionDigits(2);
@@ -113,9 +114,9 @@ public class FishBuyerGui extends JFrame{
 		btnSubmit.setActionCommand("btnsubmitbuyer");
 
 		this.getContentPane().add(_auto, BorderLayout.NORTH);
-		
+
 		JPanel panel = new JPanel(new BorderLayout());
-		
+
 		JPanel p = new JPanel(new GridLayout(2, 2));
 		p.add(labType);
 		p.add(_fishType);
@@ -124,18 +125,18 @@ public class FishBuyerGui extends JFrame{
 		panel.add(p, BorderLayout.CENTER);
 		panel.add(btnSubmit, BorderLayout.SOUTH);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
-		
+
 		p = new JPanel(new BorderLayout());
 		p.add(_sellTable.getTableHeader(), BorderLayout.NORTH);
 		p.add(_sellTable, BorderLayout.CENTER);
 		this.getContentPane().add(p, BorderLayout.SOUTH);
-		
+
 		this.pack();
 	}
-	
+
 	public void setSellers(List<AID> sellers,List<String> types, List<String> prices){
 		this._sellers.clear();
-		
+
 		for(int i = 0; i < sellers.size(); i++){
 			String name = sellers.get(i).getName().toString();
 			name = name.split("@")[0];
@@ -147,16 +148,16 @@ public class FishBuyerGui extends JFrame{
 				data.add(1, types.get(i));
 			}
 			data.add(2, prices.get(i));
-			
+
 			_sellers.add(data);
 			_sellTable.updateUI();
 			this.pack();
 		}
 	}
-	
+
 	public void constructManualMode(){
 		this.getContentPane().removeAll();
-		
+
 		this.getContentPane().add(_auto, BorderLayout.NORTH);
 		ListSelectionModel lsm = this._sellTable.getSelectionModel();
 		lsm.addListSelectionListener(new MyTableListener(this));
@@ -164,9 +165,9 @@ public class FishBuyerGui extends JFrame{
 		btnBuy.addActionListener(new MyBuyerListener(this));
 		btnBuy.setActionCommand("btnmanualbuy");
 		this._labSellerSelected = new JLabel();
-		
+
 		this.setLabelSellerSelected(null);
-		
+
 		JPanel p = new JPanel();
 		p.setLayout(new BorderLayout());
 		p.add(_sellTable.getTableHeader(), BorderLayout.NORTH);
@@ -174,10 +175,10 @@ public class FishBuyerGui extends JFrame{
 		p.add(_labSellerSelected, BorderLayout.SOUTH);
 		this.getContentPane().add(p, BorderLayout.CENTER);
 		this.getContentPane().add(btnBuy, BorderLayout.SOUTH);
-		
+
 		this.pack();
 	}
-	
+
 	private void setLabelSellerSelected(String seller){
 		String text;
 		if(seller != null){
@@ -187,7 +188,7 @@ public class FishBuyerGui extends JFrame{
 			text = new String("No seller");
 		}
 		text += " selected!";
-		
+
 		this._labSellerSelected.setText(text);
 	}
 
@@ -203,7 +204,7 @@ public class FishBuyerGui extends JFrame{
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	public void updateSellerSelected(int index){
 		if(index == -1){
 			this.setLabelSellerSelected(null);
