@@ -22,7 +22,7 @@ public class UpdateBuyerBehaviour extends Behaviour {
 		if(msg != null){
 			String content = msg.getContent();
 			int index = 0;
-			while((!this._myAgent.getSellers().get(index).equals(msg.getSender())) && (index < this._myAgent.getSellers().size())){
+			while((index < this._myAgent.getSellers().size()) && (!this._myAgent.getSellers().get(index).equals(msg.getSender()))){
 				index++;
 			}
 			
