@@ -28,9 +28,7 @@ public class SendBidBehaviour extends Behaviour {
 			this._myAgent.buyFish(this._seller);
 		}
 		else if(response.equals("NO")){
-			reply = this._myAgent.blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-			double price = Double.parseDouble(reply.getContent());
-			this._myAgent.updatePrice(price);
+			this._myAgent.addBehaviour(new SearchBehaviour(_myAgent));
 		}
 
 	}
