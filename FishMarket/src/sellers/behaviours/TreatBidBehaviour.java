@@ -37,6 +37,7 @@ public class TreatBidBehaviour extends TickerBehaviour {
 			_seller.increasePrice();
 			sendMessage();
 			_seller.getBidders().clear();
+			_seller.getMyGui().updateGui();
 			System.out.println("2+ bids");
 			break;
 		}
