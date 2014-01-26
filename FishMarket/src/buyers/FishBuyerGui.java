@@ -18,8 +18,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import listeners.MyBuyerListener;
+import listeners.MyTableListener;
 
 public class FishBuyerGui extends JFrame{
 	private FishBuyerAgent _myAgent;
@@ -132,6 +134,8 @@ public class FishBuyerGui extends JFrame{
 		this.getContentPane().removeAll();
 		
 		this.getContentPane().add(_auto, BorderLayout.NORTH);
+		ListSelectionModel lsm = this._sellTable.getSelectionModel();
+		lsm.addListSelectionListener(new MyTableListener(this));
 		JButton btnBuy = new JButton("Bid");
 		btnBuy.addActionListener(new MyBuyerListener(this));
 		btnBuy.setActionCommand("btnmanualbuy");
@@ -150,7 +154,7 @@ public class FishBuyerGui extends JFrame{
 		this.pack();
 	}
 	
-	public void setLabelSellerSelected(String seller){
+	private void setLabelSellerSelected(String seller){
 		String text;
 		if(seller != null){
 			text = new String(seller);
@@ -161,6 +165,14 @@ public class FishBuyerGui extends JFrame{
 		text += " selected!";
 		
 		this._labSellerSelected.setText(text);
+	}
+	
+	public void updateSellerSelected(int index){
+		if(index == -1){
+			this.setLabelSellerSelected(null);
+		}else{
+			this.setLabelSellerSelected(this._sellers.get(index).firstElement());
+		}
 	}
 
 	public String getFishType() {
