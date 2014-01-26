@@ -89,11 +89,12 @@ public class FishSellerAgent extends Agent{
 
 	public void increasePrice(){
 		_fish.setPrice(_fish.getPrice() * 6/5);
+		System.out.println("Increase price");
 	}
 
 	public void decreasePrice(){
 		_fish.setPrice(_fish.getPrice() * 4/5);
-		System.out.println("decrease");
+		System.out.println("Decrease price");
 	}
 
 	protected void setup(){
@@ -128,6 +129,10 @@ public class FishSellerAgent extends Agent{
 		this.send(fish);
 		System.out.println("Fish sent");
 		ACLMessage money = blockingReceive(MessageTemplate.MatchPerformative(ACLMessage.INFORM));
-		System.out.println(money.getContent());
+		if (money.getContent().equals("Money Received")){
+			System.out.println(money.getContent());
+		} else{
+			System.out.println("Error receiving money");
+		}
 	}
 }
