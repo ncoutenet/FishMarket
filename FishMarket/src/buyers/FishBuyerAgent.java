@@ -21,8 +21,17 @@ public class FishBuyerAgent extends Agent{
     private Fish _fish;
     
     private List<AID> _sellers;
+    private boolean _trackingPrices;
     
-    public Fish getFish() {
+    public boolean isTrackingPrices() {
+		return _trackingPrices;
+	}
+
+	public void setTrackingPrices(boolean trackingPrices) {
+		this._trackingPrices = trackingPrices;
+	}
+
+	public Fish getFish() {
 		return _fish;
 	}
 
@@ -55,6 +64,7 @@ public class FishBuyerAgent extends Agent{
         _myGui.setVisible(true);
         this._sellers = new ArrayList<AID>();
         _endSearch = false;
+        _trackingPrices = false;
         
     	if(this.isAuto()){
     		this.automatic();

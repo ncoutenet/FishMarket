@@ -173,6 +173,11 @@ public class FishBuyerGui extends JFrame{
 		this._sellTable.clearSelection();
 	}
 	
+	public void updatePrice(double price, int index){
+		this._sellers.get(index).set(2, String.valueOf(price));
+		this._sellTable.clearSelection();
+	}
+	
 	public void updateSellerSelected(int index){
 		if(index == -1){
 			this.setLabelSellerSelected(null);
