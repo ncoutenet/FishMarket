@@ -40,6 +40,7 @@ public class TreatBidBehaviour extends TickerBehaviour {
 			_seller.getBidders().clear();
 			_seller.getMyGui().updateGui();
 			System.out.println("2+ bids");
+			sendNewPrice();
 			break;
 		}
 
@@ -59,7 +60,7 @@ public class TreatBidBehaviour extends TickerBehaviour {
 			DFService.deregister(_seller, _seller.getMarket());
 		} catch (FIPAException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 	
 	private void sendNewPrice(){
